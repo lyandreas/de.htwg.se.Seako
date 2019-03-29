@@ -21,3 +21,5 @@ a(0)(1) = Cell(0)
 
 a(5)(2) = Cell(3)
 a(5)(1) = Cell(2)
+
+val asdf = 8

@@ -13,3 +13,7 @@ a(0)(0) = Cell(1)
 a(1)(3) = Cell(6)
 a(4)(1) = Cell(5)
 
+//the Test doesnt work
+
+a(0)(1) = Cell(0)
+a(1)(2) = Cell(2)

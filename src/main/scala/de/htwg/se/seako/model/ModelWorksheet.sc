@@ -12,3 +12,6 @@ val a = Array.ofDim[Cell](rows, colums)
 a(0)(0) = Cell(1)
 a(1)(0) = Cell(0)
 a(4)(1) = Cell(2)
+
+a(2)(0) = Cell(0)
+a(4)(2) = Cell(1)

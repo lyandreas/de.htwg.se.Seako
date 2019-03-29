@@ -10,5 +10,6 @@ val colums = 5
 
 val a = Array.ofDim[Cell](rows, colums)
 a(0)(0) = Cell(1)
-a(1)(0) = Cell(0)
-a(4)(1) = Cell(2)
+a(1)(3) = Cell(6)
+a(4)(1) = Cell(5)
+

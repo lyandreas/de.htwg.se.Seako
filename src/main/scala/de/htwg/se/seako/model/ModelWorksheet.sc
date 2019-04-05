@@ -23,3 +23,4 @@ a(1)(2) = Cell(2)
 a(1)(2) = Cell(3)
 println("Das ist nur ein Test") // try to merge that!
 println("JDK-TEST")
+println("JDK-TEST Other direction")

@@ -19,3 +19,5 @@ a(0)(1) = Cell(0)
 a(1)(2) = Cell(2)
 
 //The brach should develope from the testing branch
+
+a(1)(2) = Cell(3)

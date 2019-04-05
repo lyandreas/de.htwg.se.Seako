@@ -8,6 +8,8 @@ bin/
 
 # Intellij
 .idea/
+.idea
+modules/
 misc.xml
 target/
 .idea/misc.xml

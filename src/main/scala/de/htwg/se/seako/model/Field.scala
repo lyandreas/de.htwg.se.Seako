@@ -1,4 +1,4 @@
-package main.scala.de.htwg.se.seako.model
+package de.htwg.se.seako.model
 
 case class Field[T](rows:Vector[Vector[T]]) {
 

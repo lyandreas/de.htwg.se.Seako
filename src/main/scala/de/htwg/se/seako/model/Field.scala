@@ -1,10 +1,15 @@
-package de.htwg.se.seako.model
+package main.scala.de.htwg.se.seako.model
 
-import javafx.scene.transform.MatrixType
+case class Field[T](rows:Vector[Vector[T]]) {
 
-case class Field(fieldsize: Matrix[Cell]) {
-  def this(size:Int) = this(new Matrix[Cell](size, Cell(0)))
-  val size:Int = fieldsize.size
-  def cell(row:Int, col:Int):Cell = fieldsize.cell(row, col)
-  def set (row:Int, col:Int, value:Int):Field = copy(fieldsize.replaceCell(row, col, Cell(Value)))
+  def this(size:Int, filling:T) = this(Vector.tabulate(size, size) { (row, col ) => filling})
+
+  val size:Int = rows.size
+
+  def cell(row:Int, col:Int):T = rows(row)(col)
+
+  def fill(filling:T) :Field[T] = copy(Vector.tabulate(size, size){ (row, col ) => filling})
+
+  def replaceCell(row:Int, col:Int, cell:T):Field[T] = copy(rows.updated(row, rows(row).updated(col, cell)))
+
 }

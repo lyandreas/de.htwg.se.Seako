@@ -14,7 +14,7 @@ class CellSpec extends WordSpec with Matchers{
         "not be set" in{
           emptyCell.isSet should be (false)
         }
-        "not be set by Player 0" in{
+        "not be set by Player" in{
           emptyCell.isSetBy should be (0)
         }
       }

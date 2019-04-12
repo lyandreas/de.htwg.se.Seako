@@ -7,6 +7,4 @@ case class Field(fieldsize: Matrix[Cell]) {
   val size:Int = fieldsize.size
   def cell(row:Int, col:Int):Cell = fieldsize.cell(row, col)
   def set (row:Int, col:Int, value:Int):Field = copy(fieldsize.replaceCell(row, col, Cell(Value)))
-  def row (row:Int):
-
 }

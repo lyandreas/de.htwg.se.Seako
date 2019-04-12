@@ -19,7 +19,6 @@ class CellSpec extends WordSpec with Matchers{
         }
       }
 
-
       "set to a specific value" should {
         val nonEmptyCell = Cell(1)
         "have value 1" in {

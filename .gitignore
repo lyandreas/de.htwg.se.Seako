@@ -8,7 +8,14 @@ bin/
 
 # Intellij
 .idea/
+.idea
+modules/
+misc.xml
 target/
+.idea/misc.xml
+.idea/modules/de.htwg.se.Seako.iml
+
+modules
 
 # Maven
 log/

@@ -1,17 +1,29 @@
 package de.htwg.se.seako.aview
 
-import de.htwg.se.seako.model.{Field}
+import de.htwg.se.seako.model.{Field,FieldCreator}
 
 class Tui {
 
+  var continue
+
   def Input(input: String, field:Field):Field = {
+
     input match {
       case "q" =>
-      case "new" => new Field(6)
+      case "new" => new Field(9)
 
 
 
     }
   }
 
+
+  def exit() {
+    print("Quit Game [no|yes]")
+    val input = readLine()
+    input match {
+      case "yes" => System.exit(0)
+      case "no" => return
+    }
+  }
 }

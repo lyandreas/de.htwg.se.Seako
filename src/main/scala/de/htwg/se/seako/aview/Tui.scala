@@ -5,7 +5,7 @@ import de.htwg.se.seako.model.{Field,Cell}
 class Tui {
 
 
-  def players():  = {
+  def players() : Unit= {
     var numberOfPlayers = 0
     print("How many players [2|3|4]")
     val input = readLine()
@@ -33,7 +33,6 @@ class Tui {
     val input = readLine()
     input match {
       case "yes" => System.exit(0)
-      case "no" => return
     }
   }
 }

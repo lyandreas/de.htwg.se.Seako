@@ -17,9 +17,9 @@ class Tui {
 
 
   def newGame(input: String, field:Field[Cell]):Field[Cell] = {
-    print("creating a Field wit the size [litte|medium|big]")
+    print("creating a Field wit the size [little|medium|big]")
     input match {
-      case "litte" => new Field[Cell](3, Cell(0))
+      case "little" => new Field[Cell](3, Cell(0))
       case "medium" =>  new Field[Cell](6,Cell(0))
       case "big" => new Field[Cell](9,Cell(0))
     }

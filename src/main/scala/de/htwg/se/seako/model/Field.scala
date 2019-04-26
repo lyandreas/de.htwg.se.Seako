@@ -1,10 +1,13 @@
 package de.htwg.se.seako.model
 
+import scala.math.sqrt
+
 case class Field[T](rows:Vector[Vector[T]]) {
 
   def this(size:Int, filling:T) = this(Vector.tabulate(size, size) { (row, col ) => filling})
 
   val size:Int = rows.size
+  val blocknum: Int = sqrt(size).toInt
 
   def cell(row:Int, col:Int):T = rows(row)(col)
 
@@ -13,12 +16,15 @@ case class Field[T](rows:Vector[Vector[T]]) {
   def replaceCell(row:Int, col:Int, cell:T):Field[T] = copy(rows.updated(row, rows(row).updated(col, cell)))
 
   override def toString: String = {
-    var output = ""
-    for {
-      row <- 0 until size
-      col <- 0 until size
-    } output = output + cell(row,col).toString
-      //yield cell(row,col).asInstanceOf[Vector[Cell]].toString()
+
+    var output = "\n"
+
+    for (row <- 0 until size) {
+      for (col <- 0 until size) {
+        output = output + cell(row,col).toString + "\t"
+      }
+      output = output + "\n"
+    }
     output
   }
 

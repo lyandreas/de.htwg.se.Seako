@@ -1,10 +1,10 @@
 package de.htwg.se.seako
 
 import de.htwg.se.seako.aview.Tui
-import de.htwg.se.seako.model.{Field, FieldCreator, Player}
+import de.htwg.se.seako.model.{Field, FieldCreator, Player,Cell}
 object Seako {
 
-  var field = new Field(9)
+  var field = new Field[Cell](2,Cell(0))
   var tui = new Tui;
   def main(args: Array[String]): Unit = {
     val projectName = "Seako"

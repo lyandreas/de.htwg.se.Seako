@@ -5,23 +5,23 @@ import de.htwg.se.seako.model.{Field,FieldCreator}
 class Tui {
 
   def players(): Unit = {
-    var playercount = 0
+    var numberOfPlayers = 0
     print("How many players [2|3|4]")
     val input = readLine()
     input match {
-      case "2" => playercount = 2
-      case "3" => playercount = 3
-      case "4" => playercount = 4
+      case "2" => numberOfPlayers = 2
+      case "3" => numberOfPlayers = 3
+      case "4" => numberOfPlayers = 4
     }
   }
 
 
-  def Input(input: String, field:Field):Field = {
+  def newGame(input: String, field:Field):Field = {
+    print("creating a Field wit the size [litte|medium|big]")
     input match {
-      case "new" => new Field(9)
-
-
-
+      case "litte" => new Field(3)
+      case "medium" =>  new Field(6)
+      case "big" => new Field(9)
     }
   }
 

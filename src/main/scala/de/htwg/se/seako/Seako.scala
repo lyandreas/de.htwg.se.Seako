@@ -15,7 +15,7 @@ object Seako {
     do {
       println("Field : " + field.toString)
       input = readLine()
-      field = tui.Input(input, field)
+      field = tui.newGame(input, field)
     } while (input != "q")
   }
 }

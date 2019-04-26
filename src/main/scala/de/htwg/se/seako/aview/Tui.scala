@@ -4,24 +4,12 @@ import de.htwg.se.seako.model.{Field,FieldCreator}
 
 class Tui {
 
-  var continue
-
   def Input(input: String, field:Field):Field = {
     input match {
-      case "new" => new Field(9)
+      case "q" = field
+      case "n" => new Field(9)
+      case "start" =>
 
-
-
-    }
-  }
-
-
-  def exit() {
-    print("Quit Game [no|yes]")
-    val input = readLine()
-    input match {
-      case "yes" => System.exit(0)
-      case "no" => return
     }
   }
 }

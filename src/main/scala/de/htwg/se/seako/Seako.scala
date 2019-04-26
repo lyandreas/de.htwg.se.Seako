@@ -1,7 +1,7 @@
 package de.htwg.se.seako
 
 import de.htwg.se.seako.aview.Tui
-import de.htwg.se.seako.model.{Field, FieldCreator, Player, Solver}
+import de.htwg.se.seako.model.{Field, FieldCreator, Player}
 object Seako {
 
   var field = new Field(9)

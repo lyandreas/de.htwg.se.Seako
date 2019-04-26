@@ -4,10 +4,12 @@ import de.htwg.se.seako.model.{Field,FieldCreator,Cell}
 
 class Tui {
 
+  println("====== Welcome to SeaKo ======")
+
   def players(): Unit = {
     var numberOfPlayers = 0
     print("How many players [2|3|4]")
-    val input = readLine()
+    val input = readLine("How many players [2|3|4]")
     input match {
       case "2" => numberOfPlayers = 2
       case "3" => numberOfPlayers = 3
@@ -15,6 +17,7 @@ class Tui {
     }
   }
 
+  println("Here you choose the size of the gameboard")
 
   def newGame(input: String, field:Field[Cell]):Field[Cell] = {
     print("creating a Field wit the size [little|medium|big]")

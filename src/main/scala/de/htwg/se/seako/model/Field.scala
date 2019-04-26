@@ -7,7 +7,6 @@ case class Field[T](rows:Vector[Vector[T]]) {
   def this(size:Int, filling:T) = this(Vector.tabulate(size, size) { (row, col ) => filling})
 
   val size:Int = rows.size
-  val blocknum: Int = sqrt(size).toInt
 
   def cell(row:Int, col:Int):T = rows(row)(col)
 

@@ -1,11 +1,11 @@
 package de.htwg.se.seako.aview
 
-import de.htwg.se.seako.model.{Field,FieldCreator,Cell}
+import de.htwg.se.seako.model.{Field,Cell}
 
 class Tui {
 
 
-  def players(): Unit = {
+  def players():  = {
     var numberOfPlayers = 0
     print("How many players [2|3|4]")
     val input = readLine()
@@ -17,7 +17,8 @@ class Tui {
   }
 
   println("Choose size of playing field [little|medium|big]")
-  def newGame(input: String, field:Field[Cell]):Field[Cell] = {
+
+  def fieldSize(input: String, field:Field[Cell]):Field[Cell] = {
   //  print("creating a Field wit the size [little|medium|big]")
     input match {
       case "little" => new Field[Cell](3, Cell(0))

@@ -1,6 +1,6 @@
 package de.htwg.se.seako.aview
 
-import de.htwg.se.seako.model.{Field,FieldCreator}
+import de.htwg.se.seako.model.{Field,FieldCreator,Cell}
 
 class Tui {
 
@@ -16,12 +16,12 @@ class Tui {
   }
 
 
-  def newGame(input: String, field:Field):Field = {
+  def newGame(input: String, field:Field[Cell]):Field[Cell] = {
     print("creating a Field wit the size [litte|medium|big]")
     input match {
-      case "litte" => new Field(3)
-      case "medium" =>  new Field(6)
-      case "big" => new Field(9)
+      case "litte" => new Field[Cell](3, Cell(0))
+      case "medium" =>  new Field[Cell](6,Cell(0))
+      case "big" => new Field[Cell](9,Cell(0))
     }
   }
 

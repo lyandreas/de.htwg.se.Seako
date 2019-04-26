@@ -13,9 +13,9 @@ object Seako {
     var input : String = ""
 
     do {
-      println("Field : " + field.toString)
       input = readLine()
       field = tui.newGame(input, field)
+      println("Field : " + field.toString)
     } while (input != "q")
   }
 }

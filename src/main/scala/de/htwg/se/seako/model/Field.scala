@@ -12,6 +12,14 @@ case class Field[T](rows:Vector[Vector[T]]) {
 
   def replaceCell(row:Int, col:Int, cell:T):Field[T] = copy(rows.updated(row, rows(row).updated(col, cell)))
 
-  def toString() : String = field for
+  override def toString: String = {
+    var output = ""
+    for {
+      row <- 0 until size
+      col <- 0 until size
+    } output = output + cell(row,col).toString
+      //yield cell(row,col).asInstanceOf[Vector[Cell]].toString()
+    output
+  }
 
 }

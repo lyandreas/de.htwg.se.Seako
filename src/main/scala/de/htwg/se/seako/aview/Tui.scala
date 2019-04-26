@@ -7,9 +7,7 @@ class Tui {
   var continue
 
   def Input(input: String, field:Field):Field = {
-
     input match {
-      case "q" =>
       case "new" => new Field(9)
 
 

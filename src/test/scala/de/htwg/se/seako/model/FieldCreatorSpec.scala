@@ -1,6 +1,5 @@
 package de.htwg.se.seako.model
 
-class FieldCreator {
-
+class FieldCreatorSpec {
 
 }

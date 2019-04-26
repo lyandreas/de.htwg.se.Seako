@@ -13,7 +13,7 @@ object Seako {
     var input : String = ""
 
     do {
-      println("Grid : " + field.toString)
+      println("Field : " + field.toString)
       input = readLine()
       field = tui.Input(input, field)
     } while (input != "q")

@@ -4,7 +4,8 @@ import de.htwg.se.seako.model.{Field,FieldCreator}
 
 class Tui {
 
-  var continue
+  def players
+
 
   def Input(input: String, field:Field):Field = {
     input match {

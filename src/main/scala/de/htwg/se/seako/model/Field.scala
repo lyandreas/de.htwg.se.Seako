@@ -17,44 +17,15 @@ case class Field[T](rows:Vector[Vector[T]]) {
 
   override def toString: String = {
 
-    var output = ""
-    /*
-    for {
-      row <- 0 until size
-      col <- 0 until size
-    } output = "\n test" + output + cell(row,col).toString + " asdf"
-    output
+    var output = "\n"
 
-
-
-    for {
-      row <- 0 until size
-    }  for {
-      col <- 0 until size
-    } output = "test" + output + cell(row,col).toString + " asdf"
-    output
-
-
-     */
     for (row <- 0 until size) {
-      output = "\n asdf" + output
       for (col <- 0 until size) {
-        output = output + cell(row,col).toString
+        output = output + cell(row,col).toString + "\t"
       }
-
+      output = output + "\n"
     }
     output
-    /*
-    val lineseparator = ("+-" + ("--" * blocknum)) * blocknum + "+\n"
-    val line = ("| " + ("x " * blocknum)) * blocknum + "|\n"
-    var box = "\n" + (lineseparator + (line * blocknum)) * blocknum + lineseparator
-    for {
-      row <- 0 until size
-      col <- 0 until size
-    } box = box.replaceFirst("x", cell(row, col).toString)
-    box
-
-     */
   }
 
 }

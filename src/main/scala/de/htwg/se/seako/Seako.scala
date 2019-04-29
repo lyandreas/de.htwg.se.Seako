@@ -16,7 +16,7 @@ object Seako {
     do {
       input = readLine()
       field = tui.fieldSize(input, field)
-      player = tui.players(input, player)
+      player = tui.players(player)
       println("Field : " + field.toString)
     } while (input != "q")
   }

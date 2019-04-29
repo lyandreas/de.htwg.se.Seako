@@ -5,16 +5,45 @@ import de.htwg.se.seako.model.{Field,Cell,Player}
 class Tui {
 
 
-  def players(input: String, player: Player):Player = {
-    var number = 0
+  def players(input: String, player: Player) = {
+    var numberOfPlayers = 0
     print("How many players [2|3|4]")
     val input = readLine()
     input match {
-      case "2" => number = 2
-      case "3" => number = 3
-      case "4" => number = 4
+      case "2" => numberOfPlayers = 2
+      case "3" => numberOfPlayers = 3
+      case "4" => numberOfPlayers = 4
     }
+
+    val playerOne = Player(name = "Player1", number = 1)
+    val playerTwo = Player(name = "Player2", number = 2)
+    val playerThree = Player(name = "Player3", number = 3)
+    val playerFour = Player(name = "Player4", number = 4)
+
+    var allPlayers = ""
+
+
+    if (numberOfPlayers == 2) {
+      allPlayers = playerOne.name + ", " + playerTwo.name
+    }
+
+
+    if (numberOfPlayers == 3) {
+      allPlayers = allPlayers + " und " + playerThree.name
+    } else {
+      allPlayers = allPlayers + ", " + playerThree.name
+    }
+
+    if (numberOfPlayers == 4) {
+      allPlayers = allPlayers + " und " + playerFour.name
+    }
+
+    println(allPlayers)
+
   }
+
+
+
 
   println("Choose size of playing field [little|medium|big]")
 

@@ -21,12 +21,14 @@ class Tui {
 
 
 
-  def players(input: String, player: Player):Player = {
+  def players(input: String, player: Player):Unit = {
     var number = 0
     print("How many players [2|3|4]")
     val input = readLine()
     input match {
       case "2" => number = 2
+                  print("Two Players")
+                  print("insert name:")
       case "3" => number = 3
       case "4" => number = 4
     }

@@ -5,12 +5,12 @@ import de.htwg.se.seako.aview.Tui
 
 class FieldCreator {
 
-  new Field[Cell](Tui.fieldSize, Cell(0))
+  val field = new Field[Cell](Tui.fieldSize, Cell(0))
 
   var minCol = 0
   var minRow = 0
-  var maxRow = size
-  var maxCol = size
+  var maxRow = field.size
+  var maxCol = field.size
 
   def setPlayer(input: String, player: Player) = {
     val numberOfPlayers = 0
@@ -23,6 +23,8 @@ class FieldCreator {
 
     if (numberOfPlayers == 2) {
       allPlayers = playerOne.name + ", " + playerTwo.name
+      field.replaceCell(0,0,Cell(1,playerOne))
+      field.replaceCell(field.size, field.size, Cell(1,playerTwo))
 
 
     }

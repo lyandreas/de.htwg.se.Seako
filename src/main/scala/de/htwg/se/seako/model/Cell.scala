@@ -1,7 +1,7 @@
 package de.htwg.se.seako.model
 
 case class Cell(value: Int = 1,
-                player:  Player = Player("None"),
+                player:  Player = Player("None",0),
                 color: String = "WHITE",
                 isHighlighted: Boolean = false) {
   def search(something: Player): Option[Player] = {

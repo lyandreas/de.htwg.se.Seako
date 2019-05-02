@@ -1,8 +1,24 @@
 package de.htwg.se.seako.aview
 
+import java.io.BufferedReader;
+
 import de.htwg.se.seako.model.{Field,Cell,Player}
 
 class Tui {
+
+  var stopRunning = false
+
+  def processInput(input : BufferedReader) = {
+    while (!stopRunning) {
+      if (input.ready()) {
+        val line = input.readLine()
+        processInput(line)
+      } else {
+        Thread.sleep(200)
+      }
+    }
+  }
+
 
 
   def players(input: String, player: Player):Player = {

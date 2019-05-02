@@ -2,10 +2,12 @@ package de.htwg.se.seako.aview
 
 import java.io.BufferedReader;
 
-import de.htwg.se.seako.model.{Field,Cell,Player, FieldCreator}
+import de.htwg.se.seako.model.{Field,Cell,Player,FieldCreator}
 
 class Tui {
-  var fieldCreator = new FieldCreator()
+
+  var fieldCreator = new FieldCreator
+  var fieldsize = 0
   var stopRunning = false
 
   def processInput(input : BufferedReader) = {
@@ -36,11 +38,11 @@ class Tui {
 
   println("Choose size of playing field [little|medium|big]")
 
-  def fieldSize(input: String, field:Field[Cell]):Unit = {
+  def fieldSize(input: String, field:Field[Cell]):Field[Cell] = {
 
     input match {
-      case "little" => new Field[Cell](3, Cell(0))
-      case "medium" => fieldCreator.size = 6
+      case "little" =>  fieldsize = 3
+      case "medium" =>  new Field[Cell](6,Cell(0))
       case "big" => new Field[Cell](9,Cell(0))
     }
   }

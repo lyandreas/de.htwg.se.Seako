@@ -1,11 +1,11 @@
 package de.htwg.se.seako.model
 
-import de.htwg.se.seako.model.FieldInterface
 import de.htwg.se.seako.aview.Tui
 
 class FieldCreator {
-
-  val field = new Field[Cell](Tui.fieldSize, Cell(0))
+  /*
+  var size = 0
+  val field = new Field[Cell](size, Cell(0))
 
   var minCol = 0
   var minRow = 0
@@ -42,6 +42,6 @@ class FieldCreator {
     println(allPlayers)
 
   }
-
+  */
 
 }

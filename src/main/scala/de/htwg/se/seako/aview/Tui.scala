@@ -1,58 +1,22 @@
 package de.htwg.se.seako.aview
 
-import java.io.BufferedReader;
+import java.io.BufferedReader
 
-import de.htwg.se.seako.model.{Field,Cell,Player,FieldCreator}
+import de.htwg.se.seako.controller.controllerComponent.Controller
+import de.htwg.se.seako.model.{Cell, Field, FieldCreator, Player}
+import de.htwg.se.seako.util.Observer
 
-class Tui {
+class Tui(controller: Controller) extends Observer {
+  controller.add(this)
+  val size = 93
 
-  var fieldCreator = new FieldCreator
-  var fieldsize = 0
-  var stopRunning = false
-
-  def processInput(input : BufferedReader) = {
-    while (!stopRunning) {
-      if (input.ready()) {
-        val line = input.readLine()
-        processInput(line)
-      } else {
-        Thread.sleep(200)
-      }
-    }
-  }
-
-
-
-  def players(input: String, player: Player):Unit = {
-    var number = 0
-    print("How many players [2|3|4]")
-    val input = readLine()
+  def processInputLine(input: String): Unit = {
     input match {
-      case "2" => number = 2
-                  print("Two Players")
-                  print("insert name:")
-      case "3" => number = 3
-      case "4" => number = 4
+      case "q" =>
+      case "n" => controller.createEmptyField(size)
+      case _ =>
     }
   }
 
-  println("Choose size of playing field [little|medium|big]")
-
-  def fieldSize(input: String, field:Field[Cell]):Field[Cell] = {
-
-    input match {
-      case "little" =>  fieldsize = 3
-      case "medium" =>  new Field[Cell](6,Cell(0))
-      case "big" => new Field[Cell](9,Cell(0))
-    }
-  }
-
-
-  def exit() {
-    print("Quit Game [no|yes]")
-    val input = readLine()
-    input match {
-      case "yes" => System.exit(0)
-    }
-  }
+  override def update: Unit = println(controller.fieldToString)
 }

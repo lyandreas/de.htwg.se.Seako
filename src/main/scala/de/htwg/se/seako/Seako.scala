@@ -15,8 +15,8 @@ object Seako {
 
     do {
       input = readLine()
-      field = tui.fieldSize(input, field)
-      player = tui.players(player)
+      field = tui.fieldSize("Hello",field(0,0,Cell[]))
+      //player = tui.players(input, player)
       println("Field : " + field.toString)
     } while (input != "q")
   }

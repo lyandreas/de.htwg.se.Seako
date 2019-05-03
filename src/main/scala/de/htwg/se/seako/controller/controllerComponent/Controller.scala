@@ -12,9 +12,9 @@ class Controller(var field: Field[Cell]) extends Observable{
 
   def fieldToString: String = field.toString
 
-  def set(row: Int, col: Int, value: Int): Unit = {
-    field = field.set(row: Int, col: Int, value: Int) : Unit = {
-    }
+  def set(row: Int, col: Int, cell: Cell): Unit = {
+    field = field.replaceCell(row: Int, col: Int, cell: Cell) : Field[Cell]
+    notifyObservers
   }
   /*
   val size = 0

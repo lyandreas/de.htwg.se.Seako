@@ -39,4 +39,8 @@ class Controller(var field: Field[Cell]) extends Observable{
   val col = field.size
   */
 
+  def finish() {
+    System.exit(0)
+  }
+
 }

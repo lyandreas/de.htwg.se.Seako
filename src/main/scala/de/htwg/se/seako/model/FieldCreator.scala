@@ -3,6 +3,7 @@ package de.htwg.se.seako.model
 import de.htwg.se.seako.aview.Tui
 
 class FieldCreator {
+  /*
   var size = 0
   val field = new Field[Cell](size, Cell(0))
 
@@ -41,6 +42,6 @@ class FieldCreator {
     println(allPlayers)
 
   }
-
+  */
 
 }

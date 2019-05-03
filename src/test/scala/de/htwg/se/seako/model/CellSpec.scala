@@ -35,7 +35,7 @@ class CellSpec extends WordSpec with Matchers{
           nonEmptyCell.color should be ("GREEN")
         }
         "and isHighlighted " in {
-          nonEmptyCell.isHighlighted should be (true)
+          nonEmptyCell.isHighlighted should be (false)
         }
       }
     }

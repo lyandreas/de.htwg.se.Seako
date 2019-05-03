@@ -28,20 +28,20 @@ class TuiSpec extends WordSpec with Matchers {
     "choose amount of players and set them on field with input'p2'" in{
       tui.processInputLine("p2")
       controller.field.cell(0,0) should be(Cell(1,1,"GREEN"))
-      controller.field.cell(9,9) should be(Cell(1,2,"RED"))
+      controller.field.cell(8,8) should be(Cell(1,2,"RED"))
     }
     "choose amount of players and set them on field (size = 9) with input'p3'" in{
       tui.processInputLine("p3")
       controller.field.cell(0,0) should be(Cell(1,1,"GREEN"))
-      controller.field.cell(9,9) should be(Cell(1,2,"RED"))
-      controller.field.cell(0,9) should be(Cell(1,3,"BLUE"))
+      controller.field.cell(8,8) should be(Cell(1,2,"RED"))
+      controller.field.cell(0,8) should be(Cell(1,3,"BLUE"))
     }
     "choose amount of players and set them on field (size = 9) with input'p4'" in{
       tui.processInputLine("p4")
       controller.field.cell(0,0) should be(Cell(1,1,"GREEN"))
-      controller.field.cell(9,9) should be(Cell(1,2,"RED"))
-      controller.field.cell(0,9) should be(Cell(1,3,"BLUE"))
-      controller.field.cell(9,0) should be(Cell(1,4,"YELLOW"))
+      controller.field.cell(8,8) should be(Cell(1,2,"RED"))
+      controller.field.cell(0,8) should be(Cell(1,3,"BLUE"))
+      controller.field.cell(8,0) should be(Cell(1,4,"YELLOW"))
     }
 
   }

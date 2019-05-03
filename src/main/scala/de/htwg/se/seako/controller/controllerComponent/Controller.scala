@@ -1,8 +1,22 @@
 package de.htwg.se.seako.controller.controllerComponent
 
 import de.htwg.se.seako.model._
+import de.htwg.se.seako.util.Observable
 
-class Controller {
+class Controller(var field: Field[Cell]) extends Observable{
+
+  def createEmptyField(size: Int): Unit = {
+    field = new Field[Cell](size, Cell(0))
+    notifyObservers
+  }
+
+  def fieldToString: String = field.toString
+
+  def set(row: Int, col: Int, value: Int): Unit = {
+    field = field.set(row: Int, col: Int, value: Int) : Unit = {
+    }
+  }
+  /*
   val size = 0
 
   val field = new Field(size, Cell)
@@ -23,6 +37,6 @@ class Controller {
 
   val row = field.size
   val col = field.size
-
+  */
 
 }

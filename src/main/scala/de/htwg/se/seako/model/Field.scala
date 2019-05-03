@@ -12,6 +12,7 @@ case class Field[T](rows:Vector[Vector[T]]) {
 
   def fill(filling:T) :Field[T] = copy(Vector.tabulate(size, size){ (row, col ) => filling})
 
+  def set()
   def replaceCell(row:Int, col:Int, cell:T):Field[T] = copy(rows.updated(row, rows(row).updated(col, cell)))
 
   override def toString: String = {

@@ -40,12 +40,12 @@ class ControllerSpec extends WordSpec with Matchers{
     "createEmptyField" in {
       val emptyField = new Field[Cell](0,Cell())
       val controller = new Controller(emptyField)
-      controller.createEmptyField(0) should be ("\n")
+      controller.createEmptyField(0) should be (new Field[Cell](0,Cell()))
     }
     "createOneField" in {
       val oneField = new Field[Cell](2,Cell())
       val controller = new Controller(oneField)
-      controller.createEmptyField(2) should be ()
+      controller.createEmptyField(2) should be (new Field[Cell](2,Cell()))
 
     }
   }

@@ -7,7 +7,7 @@ import de.htwg.se.seako.model.{Cell, Field}
 class TuiSpec extends WordSpec with Matchers {
 
   "A SeaKo Tui" should {
-    val controller = new Controller(new Field[Cell](6, Cell(0)))
+    val controller = new Controller(new Field[Cell](6, Cell()))
     val tui = new Tui(controller)
     "create an empty playing field with input 'n'" in {
       tui.processInputLine("n")

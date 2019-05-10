@@ -9,6 +9,9 @@ class TuiSpec extends WordSpec with Matchers {
   "A SeaKo Tui" should {
     val controller = new Controller(new Field[Cell](6, Cell(0)))
     val tui = new Tui(controller)
+    "quit with input 'q'" in {
+      tui.processInputLine("q") should be ()
+    }
     "create an empty playing field with input 'n'" in {
       tui.processInputLine("n")
       controller.field should be(new Field[Cell](6, Cell()))

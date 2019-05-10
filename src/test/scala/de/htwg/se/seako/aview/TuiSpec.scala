@@ -49,6 +49,9 @@ class TuiSpec extends WordSpec with Matchers {
     "print unknown command with some input '_' " in {
       tui.processInputLine("j") should be ()
     }
+    "no command" in {
+      tui.processInputLine("") should be ()
+    }
 
   }
 }

@@ -9,7 +9,7 @@ import org.scalatest.{Matchers, WordSpec}
 class ControllerSpec extends WordSpec with Matchers{
 
   "A Controller" when {
-    "obserered by an Observer" should {
+    "observed by an Observer" should {
       val smallField = new Field[Cell](3,Cell())
       val controller = new Controller(smallField)
       val observer = new Observer {
@@ -35,20 +35,4 @@ class ControllerSpec extends WordSpec with Matchers{
       }
     }
   }
-  /*
-  "A Controller" when {
-    "createEmptyField" in {
-      val emptyField = new Field[Cell](0,Cell())
-      val controller = new Controller(emptyField)
-      controller.createEmptyField(6) should be (new Field[Cell](0,Cell()))
-    }
-    "createOneField" in {
-      val oneField = new Field[Cell](2,Cell())
-      val controller = new Controller(oneField)
-      controller.createEmptyField(2) should be (new Field[Cell](2,Cell()
-      ))
-
-    }
-  }
-*/
 }

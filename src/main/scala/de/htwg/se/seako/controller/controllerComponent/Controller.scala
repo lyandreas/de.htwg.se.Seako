@@ -6,7 +6,7 @@ import de.htwg.se.seako.util.Observable
 class Controller(var field: Field[Cell]) extends Observable{
 
   def createEmptyField(size: Int): Unit = {
-    field = new Field[Cell](size, Cell(0))
+    field = new Field[Cell](size, Cell())
     notifyObservers
   }
 

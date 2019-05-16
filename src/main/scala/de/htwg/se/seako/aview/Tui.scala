@@ -24,17 +24,21 @@ class Tui(controller: Controller) extends Observer {
         size = 9
         controller.createEmptyField(size)
       case "p2" =>
-        controller.set(0,0,Cell(1,1,"GREEN"))
-        controller.set(size-1, size-1,Cell(1,2,"RED"))
+        controller.set(0,0,Cell(1,1,"G"))
+        controller.set(size-1, size-1,Cell(1,2,"R"))
       case "p3" =>
-        controller.set(0,0,Cell(1,1,"GREEN"))
-        controller.set(size-1,size-1,Cell(1,2,"RED"))
-        controller.set(0,size-1,Cell(1,3,"BLUE"))
+        controller.set(0,0,Cell(1,1,"G"))
+        controller.set(size-1,size-1,Cell(1,2,"R"))
+        controller.set(0,size-1,Cell(1,3,"B"))
       case "p4" =>
-        controller.set(0,0,Cell(1,1,"GREEN"))
-        controller.set(size-1,size-1,Cell(1,2,"RED"))
-        controller.set(0,size-1,Cell(1,3,"BLUE"))
-        controller.set(size-1,0,Cell(1,4,"YELLOW"))
+        controller.set(0,0,Cell(1,1,"G"))
+        controller.set(size-1,size-1,Cell(1,2,"R"))
+        controller.set(0,size-1,Cell(1,3,"B"))
+        controller.set(size-1,0,Cell(1,4,"Y"))
+      case "c" =>
+        controller.getCurrentPlayer()
+      case "np" =>
+        controller.nextTurn()
       case _ =>
         println("unknown command")
     }

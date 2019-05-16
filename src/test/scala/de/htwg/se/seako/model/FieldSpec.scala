@@ -37,6 +37,12 @@ class FieldSpec extends WordSpec with Matchers{
           }
         }
       }
+      "empty without any Cells" should {
+        "be created by using no dimension and no cells" in {
+          val noCellsField = new Field[Cell](0,Cell())
+          noCellsField.toString() should be ("\n")
+        }
+      }
     }
 
 }

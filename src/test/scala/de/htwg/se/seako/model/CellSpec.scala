@@ -7,42 +7,35 @@ import scala.runtime.Nothing$
 class CellSpec extends WordSpec with Matchers{
 
     "A Cell " when {
-
-      /*
-      "not set to any value" should {
-        val emptyCell = Cell
-        "have value 0" in {
-          emptyCell.value should be(0)
-        }
-        "not be set" in{
-          emptyCell.isSet should be (false)
-        }
-        "not be set by Player" in{
-          emptyCell.isSetBy should be (0)
-        }
-      }
-      */
       "not set to any Player" should {
-        val emptyCell = Cell(1, Player(null))
+        val emptyCell = Cell()
         "have value 1" in {
           emptyCell.value should be (1)
         }
-        "have player None" in {
-          emptyCell.search(Player("None")) should be (None)
+        "have playerNo" in {
+          emptyCell.playerNo should be (0)
         }
-        ""
+        "color should be " in {
+          emptyCell.color should be ("WHITE")
+        }
+        "and isHighlighted " in {
+          emptyCell.isHighlighted should be (false)
+        }
       }
 
-      "set to a specific value" should {
-        val nonEmptyCell = Cell(1)
-        "have value 1" in {
-          nonEmptyCell.value should be (1)
+      "set to a specific value and player" should {
+        val nonEmptyCell = Cell(4,1,"GREEN")
+        "have value 4" in {
+          nonEmptyCell.value should be (4)
         }
-        "should be set" in {
-          nonEmptyCell.isSet should be (true)
+        "have playerNo" in {
+          nonEmptyCell.playerNo should be (1)
         }
-        "be set by Player 1" in {
-          nonEmptyCell.isSetBy should be (1)
+        "color should be" in {
+          nonEmptyCell.color should be ("GREEN")
+        }
+        "and isHighlighted " in {
+          nonEmptyCell.isHighlighted should be (false)
         }
       }
     }

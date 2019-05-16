@@ -10,19 +10,32 @@ case class Cell(value: Int = 1,
     var output = ""
     playerNo match {
       case 1 =>
-        output = "${RESET}${GREEN}1${RESET}"
+        if (isHighlighted) {
+          output += Console.BLUE + value.toString
+        } else {
+          output += Console.CYAN + value.toString
+        }
         output
       case 2 =>
-        output = "${RESET}${RED}2${RESET}"
+        if (isHighlighted) {
+          output += Console.RED + value.toString
+        } else {
+          output += Console.YELLOW + value.toString
+        }
         output
       case 3 =>
-        output = "${RESET}${BLUE}3${RESET}"
+        if (isHighlighted) {
+          output += Console.GREEN + value.toString
+        } else {
+          output += Console.GREEN_B + value.toString
+        }
         output
       case 4 =>
-        output = "${RESET}${YELLOW_B}4${RESET}"
-        output
-      case _ =>
-        output = "-"
+        if (isHighlighted) {
+          output += Console.YELLOW + value.toString
+        } else {
+          output += Console.YELLOW_B + value.toString
+        }
         output
     }
 

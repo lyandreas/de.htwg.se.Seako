@@ -1,28 +1,48 @@
 package de.htwg.se.seako.model
 
-import Console.{GREEN,RED,BLUE,YELLOW_B,RESET}
 
 case class Cell(value: Int = 1,
                 playerNo: Int = 0,
-                color: String = "WHITE",
+                color: String = "W",
                 isHighlighted: Boolean = false) {
+
   override def toString: String = {
     var output = ""
     playerNo match {
       case 1 =>
-        output = "${RESET}${GREEN}1${RESET}"
+        if (isHighlighted) {
+          output += "l" + color + "," + value.toString
+        } else {
+          output += color + "," + value.toString
+        }
         output
       case 2 =>
-        output = "${RESET}${RED}2${RESET}"
+        if (isHighlighted) {
+          output += "l" + color + "," + value.toString
+        } else {
+          output += color + "," + value.toString
+        }
         output
       case 3 =>
-        output = "${RESET}${BLUE}3${RESET}"
+        if (isHighlighted) {
+          output += "l" + color + "," + value.toString
+        } else {
+          output += color + "," + value.toString
+        }
         output
       case 4 =>
-        output = "${RESET}${YELLOW_B}4${RESET}"
+        if (isHighlighted) {
+          output += "l" + color + "," + value.toString
+        } else {
+          output += color + "," + value.toString
+        }
         output
-      case _ =>
-        output = "-"
+      case 0 =>
+        if (isHighlighted) {
+          output += color + "," + value.toString
+        } else {
+          output += color + "," + value.toString
+        }
         output
     }
 

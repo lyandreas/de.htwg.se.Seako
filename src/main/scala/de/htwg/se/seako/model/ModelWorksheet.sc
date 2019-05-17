@@ -1,3 +1,7 @@
+import de.htwg.se.seako.model.Player
+
+import scala.collection.immutable.Queue
+
 case class Cell(isSet: Int)
 
 val cell1 = Cell(0)
@@ -26,3 +30,12 @@ a(1)(2) = Cell(3)
 println("Das ist nur ein Test") // try to merge that!
 println("JDK-TEST")
 println("JDK-TEST Other direction")
+
+var playerVector: Vector[Player] = Vector(Player("Player1",1), Player("Player2",2))
+
+playerVector = playerVector :+ Player("Player3",3)
+
+playerVector = playerVector.last +: playerVector
+playerVector = playerVector.dropRight(1)
+playerVector
+playerVector.head

@@ -2,7 +2,7 @@ package de.htwg.se.seako.aview
 
 import java.io.BufferedReader
 
-import de.htwg.se.seako.controller.controllerComponent.Controller
+import de.htwg.se.seako.controller.controllerComponent.{Controller,GameStatus}
 import de.htwg.se.seako.model.{Cell, Field, Player}
 import de.htwg.se.seako.util.Observer
 
@@ -27,10 +27,15 @@ class Tui(controller: Controller) extends Observer {
         controller.set(0,0,Cell(1,1,"G"))
         controller.set(size-1, size-1,Cell(1,2,"R"))
       case "p3" =>
+        controller.addPlayer(Player("Player3",3))
         controller.set(0,0,Cell(1,1,"G"))
         controller.set(size-1,size-1,Cell(1,2,"R"))
         controller.set(0,size-1,Cell(1,3,"B"))
       case "p4" =>
+        if (!controller.currentPlayer.playerVector.contains(Player("Player3",3))) {
+          controller.addPlayer(Player("Player3",3))
+        }
+        controller.addPlayer(Player("Player4",4))
         controller.set(0,0,Cell(1,1,"G"))
         controller.set(size-1,size-1,Cell(1,2,"R"))
         controller.set(0,size-1,Cell(1,3,"B"))
@@ -39,10 +44,15 @@ class Tui(controller: Controller) extends Observer {
         controller.getCurrentPlayer()
       case "np" =>
         controller.nextTurn()
+      case "cp" =>
+        print(controller.currentPlayerVector)
       case _ =>
         println("unknown command")
     }
   }
 
-  override def update: Unit = println(controller.fieldToString)
+  override def update: Unit = {
+    println(controller.fieldToString)
+    println(GameStatus.message(controller.gameStatus))
+  }
 }

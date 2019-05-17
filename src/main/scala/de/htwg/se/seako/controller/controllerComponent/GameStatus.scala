@@ -7,8 +7,8 @@ object GameStatus extends Enumeration{
   val map = Map[GameStatus, String] (
     IDLE -> "",
     SETTING_FIELD -> "set field size",
-    SETTING_PLAYER -> "set amount of players and their names",
-    SET -> "Player can choose a Cell to fight from",
+    SETTING_PLAYER -> "add player",
+    SET -> "",
     ATTACK -> "Player choose Cell to attack",
     FIGHT -> "Game is in fighting mode",
     AFTERMATH -> "Aftermath of the fight",

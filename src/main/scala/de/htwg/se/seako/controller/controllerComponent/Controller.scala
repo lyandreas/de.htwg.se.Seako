@@ -15,11 +15,13 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   def fieldToString: String = field.toString
 
   def set(row: Int, col: Int, cell: Cell): Unit = {
+    gameStatus = SET
     field = field.replaceCell(row: Int, col: Int, cell: Cell) : Field[Cell]
     notifyObservers
   }
 
   def nextTurn(): Unit = {
+    gameStatus = NEXT_PLAYER
     currentPlayer.nextPlayer()
     notifyObservers
   }
@@ -27,6 +29,20 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   def getCurrentPlayer(): Unit = {
     print(currentPlayer.getCurrentPlayer)
     notifyObservers
+  }
+
+  def addPlayer(player: Player): Unit = {
+    gameStatus = SETTING_PLAYER
+    currentPlayer.add(player)
+    notifyObservers
+  }
+
+  def currentPlayerVector: String = currentPlayer.toString
+
+  def fight(playerOne: Player,playerTwo: Player): String = {
+    gameStatus = FIGHT
+    var output =""
+    output
   }
 
 

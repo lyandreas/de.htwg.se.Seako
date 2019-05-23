@@ -46,8 +46,13 @@ class Tui(controller: Controller) extends Observer {
         controller.nextTurn()
       case "cp" =>
         print(controller.currentPlayerVector)
-      case _ =>
-        println("unknown command")
+
+      case _ => input.toList.filter(c => c != ' ').filter(_.isDigit).map(c => c.toString.toInt) match {
+        case row :: column :: player:: Nil =>
+            controller.fight(row, column, player)
+            controller.set(row, column, Cell(,player))
+        case _ => println("unknown command")
+      }
     }
   }
 

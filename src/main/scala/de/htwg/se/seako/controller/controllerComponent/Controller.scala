@@ -3,6 +3,7 @@ package de.htwg.se.seako.controller.controllerComponent
 import de.htwg.se.seako.model._
 import de.htwg.se.seako.util.Observable
 import de.htwg.se.seako.controller.controllerComponent.GameStatus._
+import de.htwg.se.seako.model.fight.Fight
 
 class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player]) extends Observable{
 
@@ -19,6 +20,12 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     field = field.replaceCell(row: Int, col: Int, cell: Cell) : Field[Cell]
     notifyObservers
   }
+  /*
+  def setCell(player: CurrentPlayer[Player], row: Int, col: Int): Unit = {
+    gameStatus = FIGHT
+    new Fight(currentPlayer.getCurrentPlayer, Player("Computer", 0))
+    field = field.replaceCell(row, col, Cell())
+  }*/
 
   def nextTurn(): Unit = {
     gameStatus = NEXT_PLAYER
@@ -39,11 +46,9 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
   def currentPlayerVector: String = currentPlayer.toString
 
-  def fight(playerOne: Player,playerTwo: Player): String = {
+  def fight(row: Int, col: Int, player: Player): Unit = {
     gameStatus = FIGHT
-    var output =""
-    output
+    new Fight(currentPlayer.getCurrentPlayer, Player("Computer",0): Player, Cell()) {
+    }
   }
-
-
 }

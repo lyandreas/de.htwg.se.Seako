@@ -46,6 +46,8 @@ class Tui(controller: Controller) extends Observer {
         controller.nextTurn()
       case "cp" =>
         print(controller.currentPlayerVector)
+      case "back" => controller.undo
+      case "foward" => controller.redo
       case _ =>
         println("unknown command")
     }

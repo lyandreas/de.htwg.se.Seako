@@ -13,8 +13,8 @@ class Tui(controller: Controller) extends Observer {
     input match {
       case "q" =>
       case "n" => controller.createEmptyField(size)
-      case "b" => controller.undo()
-      case "f" => controller.redo()
+      case "z" => controller.undo()
+      case "y" => controller.redo()
       case "s-l" =>
         size = 3
         controller.createEmptyField(size)
@@ -49,6 +49,8 @@ class Tui(controller: Controller) extends Observer {
       case "cp" =>
         print(controller.currentPlayerVector)
       case _ => input.toList.filter(c => c != ' ').filter(_.isDigit).map(c => c.toString.toInt) match {
+          case row :: column :: Nil =>
+                controller.fight(row,column,Cell(4,4))
           case row :: column :: value :: Nil => controller.set(row, column, Cell(value,value,"V"))
           case _ => println("unknown command")
       }

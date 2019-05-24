@@ -4,23 +4,16 @@ import de.htwg.se.seako.model.Cell
 
 import scala.util.Random
 
-abstract class Fight(cell: Cell) extends FightStrategyTemplate {
-  var r = Random
-  r.nextInt(1)%2 == 0
-
-  var i = 0
-
-  if (r == 0){
-    i = 0
-  } else {
-    i = 1
+class Fight(cell: Cell) extends FightStrategyTemplate {
+  var r = Random.nextInt(100)
+  var outcomeFight = false
+  print("test2")
+  if (r % 2 == 0) {
+    outcomeFight= new WinStrategy(cell).outcome()
+    print(outcomeFight)
+  }  else {
+    outcomeFight = new LossStrategy().outcome()
+    print(outcomeFight)
   }
-
-  override def WinStrategy(): Unit = {  }
-
-  override def LossStrategy(): Unit = new LossStrategy() {}
-
-
-  override def Fight(): Unit = new Fight(){}
-
+  override def outcome(): Boolean = outcomeFight
 }

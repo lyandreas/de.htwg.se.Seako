@@ -1,9 +1,8 @@
 package de.htwg.se.seako.aview
 
-import java.io.BufferedReader
 
 import de.htwg.se.seako.controller.controllerComponent.{Controller,GameStatus}
-import de.htwg.se.seako.model.{Cell, Field, Player}
+import de.htwg.se.seako.model.{Cell, Player}
 import de.htwg.se.seako.util.Observer
 
 class Tui(controller: Controller) extends Observer {
@@ -14,6 +13,8 @@ class Tui(controller: Controller) extends Observer {
     input match {
       case "q" =>
       case "n" => controller.createEmptyField(size)
+      case "b" => controller.undo()
+      case "f" => controller.redo()
       case "s-l" =>
         size = 3
         controller.createEmptyField(size)
@@ -46,8 +47,6 @@ class Tui(controller: Controller) extends Observer {
         controller.nextTurn()
       case "cp" =>
         print(controller.currentPlayerVector)
-      case "back" => controller.undo
-      case "foward" => controller.redo
       case _ =>
         println("unknown command")
     }

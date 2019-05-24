@@ -5,10 +5,10 @@ import de.htwg.se.seako.util.Command
 
 class SetCommand (row:Int, col: Int, cell: Cell, controller: Controller) extends Command{
 
-  override def doStep: Unit =   controller.field = controller.field.replaceCell(row, col, cell)
+  override def doStep(): Unit =   controller.field = controller.field.replaceCell(row, col, cell)
 
-  override def undoStep: Unit = controller.field = controller.field.replaceCell(row, col, 0)
+  override def undoStep(): Unit = controller.field = controller.field.replaceCell(row, col, cell)
 
-  override def redoStep: Unit = controller.field = controller.field.replaceCell(row, col, cell)
+  override def redoStep(): Unit = controller.field = controller.field.replaceCell(row, col, cell)
 
 }

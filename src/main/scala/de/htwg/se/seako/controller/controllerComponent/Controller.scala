@@ -18,9 +18,9 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   def fieldToString: String = field.toString
 
   def set(row: Int, col: Int, cell: Cell): Unit = {
-    undoManager.doStep(new SetCommand(row, col, cell, this))
     gameStatus = SET
-    field = field.replaceCell(row: Int, col: Int, cell: Cell) : Field[Cell]
+    undoManager.doStep(new SetCommand(row, col, cell, this))
+ //   field = field.replaceCell(row: Int, col: Int, cell: Cell) : Field[Cell]
     notifyObservers
   }
 
@@ -49,13 +49,13 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     output
   }
 
-  def undo: Unit = {
-    undoManager.undoStep
+  def undo(): Unit = {
+    undoManager.undoStep()
     notifyObservers
   }
 
-  def redo: Unit = {
-    undoManager.redoStep
+  def redo(): Unit = {
+    undoManager.redoStep()
     notifyObservers
   }
 

@@ -1,7 +1,7 @@
 package de.htwg.se.seako.model.fight
 
-import de.htwg.se.seako.model.Player
+import de.htwg.se.seako.model.Cell
 
-class LossStrategy(player: Player) {
-  print(player + "loss the fight")
+abstract class LossStrategy(cell : Cell) extends FightStrategyTemplate {
+
 }

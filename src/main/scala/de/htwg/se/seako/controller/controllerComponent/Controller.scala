@@ -5,7 +5,7 @@ import de.htwg.se.seako.util.{Observable, UndoManager}
 import de.htwg.se.seako.controller.controllerComponent.GameStatus._
 import de.htwg.se.seako.model.fight.Fight
 
-class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player], var fightOutcome: Fight) extends Observable{
+class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player]) extends Observable{
 
   var gameStatus: GameStatus = IDLE
   private val undoManager = new UndoManager
@@ -44,8 +44,10 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   def currentPlayerVector: String = currentPlayer.toString
 
   def fight(row:Int, col:Int,cell: Cell): Unit = {
+
     gameStatus = FIGHT
-    fightOutcome = new Fight(cell)
+
+    var fightOutcome = new Fight(cell)
     print(fightOutcome)
     if (fightOutcome.outcome()) {
       set(row,col,cell)

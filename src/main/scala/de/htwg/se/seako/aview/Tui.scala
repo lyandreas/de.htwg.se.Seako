@@ -1,9 +1,8 @@
 package de.htwg.se.seako.aview
 
-import java.io.BufferedReader
 
 import de.htwg.se.seako.controller.controllerComponent.{Controller,GameStatus}
-import de.htwg.se.seako.model.{Cell, Field, Player}
+import de.htwg.se.seako.model.{Cell, Player}
 import de.htwg.se.seako.util.Observer
 
 class Tui(controller: Controller) extends Observer {
@@ -14,6 +13,8 @@ class Tui(controller: Controller) extends Observer {
     input match {
       case "q" =>
       case "n" => controller.createEmptyField(size)
+      case "b" => controller.undo()
+      case "f" => controller.redo()
       case "s-l" =>
         size = 3
         controller.createEmptyField(size)
@@ -35,6 +36,7 @@ class Tui(controller: Controller) extends Observer {
         if (!controller.currentPlayer.playerVector.contains(Player("Player3",3))) {
           controller.addPlayer(Player("Player3",3))
         }
+
         controller.addPlayer(Player("Player4",4))
         controller.set(0,0,Cell(1,1,"G"))
         controller.set(size-1,size-1,Cell(1,2,"R"))
@@ -46,12 +48,9 @@ class Tui(controller: Controller) extends Observer {
         controller.nextTurn()
       case "cp" =>
         print(controller.currentPlayerVector)
-
       case _ => input.toList.filter(c => c != ' ').filter(_.isDigit).map(c => c.toString.toInt) match {
-        case row :: column :: player:: Nil =>
-            controller.fight(row, column, player)
-            controller.set(row, column, Cell(,player))
-        case _ => println("unknown command")
+          case row :: column :: value :: Nil => controller.set(row, column, Cell(value,value,"V"))
+          case _ =>
       }
     }
   }

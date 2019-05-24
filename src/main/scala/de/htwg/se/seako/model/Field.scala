@@ -1,6 +1,5 @@
 package de.htwg.se.seako.model
 
-import scala.math.sqrt
 
 case class Field[T](rows:Vector[Vector[T]]) {
 

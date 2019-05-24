@@ -20,7 +20,6 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   def set(row: Int, col: Int, cell: Cell): Unit = {
     gameStatus = SET
     undoManager.doStep(new SetCommand(row, col, cell, this))
- //   field = field.replaceCell(row: Int, col: Int, cell: Cell) : Field[Cell]
     notifyObservers
   }
 

@@ -1,9 +1,8 @@
 package de.htwg.se.seako.model.fight
 
-import de.htwg.se.seako.model.{Cell, Field, Player}
+import de.htwg.se.seako.model.Cell
 
-class WinStrategy(var field: Field[Cell], row:Int, col: Int, player: Player)extends FightStrategyTemplate {
-  print(player + "won the fight")
-  field.replaceCell(row,col,Cell(123,123,"T"))
+abstract class WinStrategy(cell: Cell) extends FightStrategyTemplate {
+
 
 }

@@ -50,7 +50,7 @@ class Tui(controller: Controller) extends Observer {
         print(controller.currentPlayerVector)
       case _ => input.toList.filter(c => c != ' ').filter(_.isDigit).map(c => c.toString.toInt) match {
           case row :: column :: value :: Nil => controller.set(row, column, Cell(value,value,"V"))
-          case _ =>
+          case _ => println("unknown command")
       }
     }
   }

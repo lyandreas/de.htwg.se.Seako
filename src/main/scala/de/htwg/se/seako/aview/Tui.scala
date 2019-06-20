@@ -12,9 +12,10 @@ class Tui(controller: Controller) extends Observer {
   def processInputLine(input: String): Unit = {
     input match {
       case "q" =>
-      case "n" => controller.createEmptyField(size)
+      case "n" => controller.createEmptyField(controller.size)
       case "z" => controller.undo()
       case "y" => controller.redo()
+      case "s" => controller.startGame()
       case "s-l" =>
         size = 3
         controller.createEmptyField(size)
@@ -25,7 +26,7 @@ class Tui(controller: Controller) extends Observer {
         size = 9
         controller.createEmptyField(size)
       case "p2" =>
-        controller.set(0,0,Cell(1,1,"G"))
+        controller.set(0,0,Cell(1,1,"G",false, Player("Player1",1)))
         controller.set(size-1, size-1,Cell(1,2,"R"))
       case "p3" =>
         controller.addPlayer(Player("Player3",3))
@@ -47,10 +48,11 @@ class Tui(controller: Controller) extends Observer {
       case "np" =>
         controller.nextTurn()
       case "cp" =>
-        print(controller.currentPlayerVector)
+        controller.currentPlayerVector
       case _ => input.toList.filter(c => c != ' ').filter(_.isDigit).map(c => c.toString.toInt) match {
-          case row :: column :: Nil =>
-                controller.fight(row,column,Cell(4,4))
+          case row :: column :: Nil => controller.select(row,column)
+
+                //controller.fight(row,column,Cell(4,4))
           case row :: column :: value :: Nil => controller.set(row, column, Cell(value,value,"V"))
           case _ => println("unknown command")
       }

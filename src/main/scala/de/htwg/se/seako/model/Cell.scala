@@ -4,7 +4,9 @@ package de.htwg.se.seako.model
 case class Cell(value: Int = 1,
                 playerNo: Int = 0,
                 color: String = "W",
-                isHighlighted: Boolean = false) {
+                isHighlighted: Boolean = false,
+                player: Player = Player("Computer", 0)
+               ) {
 
   override def toString: String = {
     var output = ""

@@ -12,7 +12,6 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
   var gameStatus: GameStatus = IDLE
   private val undoManager = new UndoManager
-  var size = 6
 
 
   def createEmptyField(size: Int): Unit = {
@@ -28,38 +27,44 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
   def select(row: Int, col: Int): Unit = {
     gameStatus = SELECT
-    if (currentPlayer.getCurrentPlayer.equals(Cell(row, col).player)) {
+    if (currentPlayer.getCurrentPlayer.equals(getSelectedCell(row,col).player)) {
       print("LLELFEQLF")
       highlight(row, col, currentPlayer.getCurrentPlayer)
+    } else if (getSelectedCell(row, col).isHighlighted) {
+      fight(row, col)
+    } else if (!getSelectedCell(row, col).isHighlighted && getSelectedCell(row, col).player == currentPlayer.getCurrentPlayer) {
+      highlight(row, col,currentPlayer.getCurrentPlayer)
+    } else {
+      print("Bitte ein eingenes oder gehighlightes Feld auswaehlen\n")
     }
-    print(currentPlayer.getCurrentPlayer + " " + Cell(row,col).player)
+    print(currentPlayer.getCurrentPlayer + " " + getSelectedCell(row,col).player)
     notifyObservers
   }
 
   def highlight(row: Int, col: Int, player: Player): Unit = {
-    if (row - 1 >= 0 && col - 1 >= 0 && Cell(row - 1, col -1).player != player) {
-      set(row - 1, col - 1, Cell(row - 1, col - 1,"H",true))
+    if (row - 1 >= 0 && col - 1 >= 0 && getSelectedCell(row - 1, col -1).player != player) {
+      set(row - 1, col - 1, Cell(getSelectedCell(row - 1, col - 1).value , isHighlighted = true, getSelectedCell(row - 1, col - 1).player)) //links oben
     }
-    else if (row - 1 >= 0 && Cell(row - 1, col).player != player) {
-      set(row - 1, col, Cell(row - 1, col,"H",true))
+    if (row - 1 >= 0 && getSelectedCell(row - 1, col).player != player) {
+      set(row - 1, col, Cell( getSelectedCell(row - 1, col).value, isHighlighted = true,getSelectedCell(row - 1, col).player)) // mitte oben
     }
-    else if (row -1 >= 0 && col + 1 < size && Cell(row - 1, col + 1).player != player) {
-      set(row -1, col +1, Cell(row -1, col +1,"H",true))
+    if (row - 1 >= 0 && col + 1 < field.size && getSelectedCell(row - 1, col + 1).player != player) {
+      set(row - 1, col + 1, Cell(getSelectedCell(row - 1, col + 1).value, isHighlighted = true, getSelectedCell(row - 1, col + 1).player)) // rechts oben
     }
-    else if (col -1 >= 0 && Cell(row, col - 1).player != player) {
-      set(row, col -1, Cell(row, col -1,"H",true))
+    if (col - 1 >= 0 && getSelectedCell(row, col - 1).player != player) {
+      set(row, col - 1, Cell(getSelectedCell(row, col - 1).value,isHighlighted =  true, getSelectedCell(row, col - 1).player)) // links
     }
-    else if (col+1 < size && Cell(row, col+1).player != player) {
-      set(row, col+1, Cell(row, col+1,"H",true))
+    if (col + 1 < field.size && getSelectedCell(row, col + 1).player != player) {
+      set(row, col + 1, Cell(getSelectedCell(row, col + 1).value,isHighlighted =  true, getSelectedCell(row, col + 1).player)) // rechts
     }
-    else if (row+1 < size && col-1 > 0 && Cell(row+1, col-1).player != player) {
-      set(row+1, col-1, Cell(row+1, col-1,"H",true))
+    if (row + 1 < field.size && col - 1 > 0 && getSelectedCell(row+1, col-1).player != player) {
+      set(row + 1, col - 1, Cell(getSelectedCell(row + 1, col - 1).value , isHighlighted = true, getSelectedCell(row + 1, col - 1).player)) // links unten
     }
-    else if (row+1 < size && Cell(row+1, col).player != player) {
-      set(row+1, col, Cell(row+1, col,"H",true))
+    if (row + 1 < field.size && getSelectedCell(row + 1, col).player != player) {
+      set(row + 1, col, Cell(getSelectedCell(row + 1, col).value, isHighlighted = true, getSelectedCell(row + 1, col).player)) // mitte unten
     }
-    else if (row+1 < size && col+1 < size && Cell(row+1, col+1).player != player) {
-      set(row+1, col+1, Cell(row+1, col+1,"H",true))
+    if (row+1 < field.size && col+1 < field.size && getSelectedCell(row+1, col+1).player != player) {
+      set(row + 1, col + 1, Cell(getSelectedCell(row + 1, col + 1).value,isHighlighted =  true, getSelectedCell(row + 1, col + 1).player)) //rechts unten
     }
   }
 
@@ -69,11 +74,15 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     notifyObservers
   }
 
+  def getSelectedCell(row: Int, col: Int): Cell = {
+    field.cell(row, col)
+  }
+
   def nextTurn(): Unit = {
     currentPlayer.nextPlayer()
   }
 
-  def getCurrentPlayer(): Player = {
+  def getCurrentPlayer: Player = {
     print(currentPlayer.getCurrentPlayer)
     currentPlayer.getCurrentPlayer
   }
@@ -82,18 +91,18 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     currentPlayer.add(player)
   }
 
-  def currentPlayerVector: Unit = {
+  def currentPlayerVector(): Unit = {
     currentPlayer.playerVector foreach println
   }
 
-  def fight(row:Int, col:Int,cell: Cell): Unit = {
+  def fight(row:Int, col:Int): Unit = {
 
     gameStatus = FIGHT
 
-    var fightOutcome = new Fight(cell)
+    var fightOutcome = new Fight(Cell())
     print(fightOutcome)
     if (fightOutcome.outcome()) {
-      set(row,col,cell)
+      set(row,col,Cell(1,isHighlighted = false,currentPlayer.getCurrentPlayer))
     } else {
       notifyObservers
     }

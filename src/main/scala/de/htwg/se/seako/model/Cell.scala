@@ -2,48 +2,45 @@ package de.htwg.se.seako.model
 
 
 case class Cell(value: Int = 1,
-                playerNo: Int = 0,
-                color: String = "W",
                 isHighlighted: Boolean = false,
-                player: Player = Player("Computer", 0)
+                player : Player = Player("Computer",0)
                ) {
-
   override def toString: String = {
     var output = ""
-    playerNo match {
-      case 1 =>
+    player.name match {
+      case "Player1" =>
         if (isHighlighted) {
-          output += "l" + color + "," + value.toString
+          output += "HG" + value.toString
         } else {
-          output += color + "," + value.toString
+          output += "G" + value.toString
         }
         output
-      case 2 =>
+      case "Player2" =>
         if (isHighlighted) {
-          output += "l" + color + "," + value.toString
+          output += "HR" + value.toString
         } else {
-          output += color + "," + value.toString
+          output += "R" + value.toString
         }
         output
-      case 3 =>
+      case "Player3" =>
         if (isHighlighted) {
-          output += "l" + color + "," + value.toString
+          output += "HB" + value.toString
         } else {
-          output += color + "," + value.toString
+          output += "B" + value.toString
         }
         output
-      case 4 =>
+      case "Player4" =>
         if (isHighlighted) {
-          output += "l" + color + "," + value.toString
+          output += "HY" + value.toString
         } else {
-          output += color + "," + value.toString
+          output += "Y" + value.toString
         }
         output
-      case 0 =>
+      case "Computer"=>
         if (isHighlighted) {
-          output += color + "," + value.toString
+          output += "HW"+ value.toString
         } else {
-          output += color + "," + value.toString
+          output += "W" + "," + value.toString
         }
         output
     }

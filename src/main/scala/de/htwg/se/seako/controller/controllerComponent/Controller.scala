@@ -28,37 +28,39 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
   def select(row: Int, col: Int): Unit = {
     gameStatus = SELECT
-    if (currentPlayer.getCurrentPlayer.equals(Cell(row, col).player)) {
-      print("LLELFEQLF")
+    if (currentPlayer.getCurrentPlayer.equals(getSelectedCell(row, col).player)) {
+      println("LLELFEQLF")
       highlight(row, col, currentPlayer.getCurrentPlayer)
+    } else {
+      println(currentPlayer.getCurrentPlayer + " " + getSelectedCell(row,col).player)
+      println("Hallo" + " " + getSelectedCell(row, col))
     }
-    print(currentPlayer.getCurrentPlayer + " " + Cell(row,col).player)
     notifyObservers
   }
 
-  def highlight(row: Int, col: Int, player: Player): Unit = {
-    if (row - 1 >= 0 && col - 1 >= 0 && Cell(row - 1, col -1).player != player) {
+ def highlight(row: Int, col: Int, player: Player): Unit = {
+    if (row - 1 >= 0 && col - 1 >= 0 && getSelectedCell(row - 1, col -1).player != player) {
       set(row - 1, col - 1, Cell(row - 1, col - 1,"H",true))
     }
-    else if (row - 1 >= 0 && Cell(row - 1, col).player != player) {
+    else if (row - 1 >= 0 && getSelectedCell(row - 1, col).player != player) {
       set(row - 1, col, Cell(row - 1, col,"H",true))
     }
-    else if (row -1 >= 0 && col + 1 < size && Cell(row - 1, col + 1).player != player) {
+    else if (row -1 >= 0 && col + 1 < size && getSelectedCell(row - 1, col + 1).player != player) {
       set(row -1, col +1, Cell(row -1, col +1,"H",true))
     }
-    else if (col -1 >= 0 && Cell(row, col - 1).player != player) {
+    else if (col -1 >= 0 && getSelectedCell(row, col - 1).player != player) {
       set(row, col -1, Cell(row, col -1,"H",true))
     }
-    else if (col+1 < size && Cell(row, col+1).player != player) {
+    else if (col+1 < size && getSelectedCell(row, col+1).player != player) {
       set(row, col+1, Cell(row, col+1,"H",true))
     }
-    else if (row+1 < size && col-1 > 0 && Cell(row+1, col-1).player != player) {
+    else if (row+1 < size && col-1 > 0 && getSelectedCell(row+1, col-1).player != player) {
       set(row+1, col-1, Cell(row+1, col-1,"H",true))
     }
-    else if (row+1 < size && Cell(row+1, col).player != player) {
+    else if (row+1 < size && getSelectedCell(row+1, col).player != player) {
       set(row+1, col, Cell(row+1, col,"H",true))
     }
-    else if (row+1 < size && col+1 < size && Cell(row+1, col+1).player != player) {
+    else if (row+1 < size && col+1 < size && getSelectedCell(row+1, col+1).player != player) {
       set(row+1, col+1, Cell(row+1, col+1,"H",true))
     }
   }
@@ -69,6 +71,10 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     notifyObservers
   }
 
+  def getSelectedCell(row: Int, col: Int): Cell = {
+    field.cell(row, col)
+  }
+
   def nextTurn(): Unit = {
     currentPlayer.nextPlayer()
   }
@@ -77,6 +83,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     print(currentPlayer.getCurrentPlayer)
     currentPlayer.getCurrentPlayer
   }
+
 
   def addPlayer(player: Player): Unit = {
     currentPlayer.add(player)

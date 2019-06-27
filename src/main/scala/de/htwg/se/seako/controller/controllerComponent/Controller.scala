@@ -37,6 +37,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
       set(row, col, Cell(0, isHighlighted = false, currentPlayer.getCurrentPlayer))
       attackerRow = row
       attackerCol = col
+      /*
       for (col <- 0 until field.size-1) {
         for (row <- 0 until field.size-1) {
           if(getSelectedCell(row,col).isHighlighted) {
@@ -44,7 +45,8 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
           }
         }
-      }
+      }*/
+      dehighlight()
       highlight(row, col, currentPlayer.getCurrentPlayer)
     } else if (getSelectedCell(row, col).isHighlighted) {
       print("Angreifer waehlt Feld ("+ row + "|" + col+") aus")
@@ -77,7 +79,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     if (col + 1 < field.size && getSelectedCell(row, col + 1).player != player) {
       set(row, col + 1, Cell(getSelectedCell(row, col + 1).value,isHighlighted =  true, getSelectedCell(row, col + 1).player)) // rechts
     }
-    if (row + 1 < field.size && col - 1 > 0 && getSelectedCell(row+1, col-1).player != player) {
+    if (row + 1 < field.size && col - 1 >= 0 && getSelectedCell(row+1, col-1).player != player) {
       set(row + 1, col - 1, Cell(getSelectedCell(row + 1, col - 1).value , isHighlighted = true, getSelectedCell(row + 1, col - 1).player)) // links unten
     }
     if (row + 1 < field.size && getSelectedCell(row + 1, col).player != player) {
@@ -88,6 +90,17 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     }
   }
 
+  def dehighlight(): Unit = {
+
+    for (col <- 0 until field.size-1) {
+      for (row <- 0 until field.size-1) {
+        //if(getSelectedCell(row,col).isHighlighted) {
+          set(row, col, Cell(getSelectedCell(row, col).value , isHighlighted = false, getSelectedCell(row, col).player))
+
+        //}
+      }
+    }
+  }
   def set(row: Int, col: Int, cell: Cell): Unit = {
     gameStatus = SET
     undoManager.doStep(new SetCommand(row, col, cell, this))
@@ -155,8 +168,9 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     defenderCol = -1
     symbol1 = Symbol(0)
     symbol2 = Symbol(0)
+    dehighlight()
     nextTurn()
-
+    /*
     for (col <- 0 until field.size-1) {
       for (row <- 0 until field.size-1) {
         if(getSelectedCell(row,col).isHighlighted) {
@@ -164,10 +178,9 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
         }
       }
-    }
+    }*/
     //dehighlight
   }
-
   def setSymbol(symbol: Int) : Unit = {
     var output = ""
       if (gameStatus == FIGHT ) {

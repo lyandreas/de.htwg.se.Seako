@@ -60,6 +60,8 @@ class Tui(controller: Controller) extends Observer {
 
       case "sf" => controller.startFight()
 
+      case "dh" => controller.dehighlight()
+
       case _ => input.toList.filter(c => c != ' ').filter(_.isDigit).map(c => c.toString.toInt) match {
           case row :: column :: Nil => controller.select(row,column)
           case row :: column :: value :: Nil => controller.set(row, column, Cell(value,isHighlighted = false,Player("Computer", 0)))

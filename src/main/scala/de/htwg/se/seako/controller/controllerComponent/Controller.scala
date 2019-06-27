@@ -49,7 +49,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
       dehighlight()
       highlight(row, col, currentPlayer.getCurrentPlayer)
     } else if (getSelectedCell(row, col).isHighlighted) {
-      print("Angreifer waehlt Feld ("+ row + "|" + col+") aus")
+      print("Angreifer waehlt Feld ("+ row + "|" + col+") aus\n")
       fightCell(row, col)
       var s1 = Symbol(0)
       var s2 = Symbol(0)
@@ -92,11 +92,11 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
   def dehighlight(): Unit = {
 
-    for (col <- 0 until field.size-1) {
-      for (row <- 0 until field.size-1) {
+    for (col <- 0 until field.size) {
+      for (row <- 0 until field.size) {
         //if(getSelectedCell(row,col).isHighlighted) {
           set(row, col, Cell(getSelectedCell(row, col).value , isHighlighted = false, getSelectedCell(row, col).player))
-
+        //set(row, col, Cell(10 , isHighlighted = false, getSelectedCell(row, col).player))
         //}
       }
     }
@@ -132,7 +132,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     gameStatus = FIGHT
     defenderRow = row
     defenderCol = col
-
+    print("1-Schere\n2-Stein\n3-Papier\n")
     // Warte auf eingabe danach bestätigung
     //
 
@@ -187,25 +187,25 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
         if (symbol1 == Symbol(0)) {
           symbol match {
             case 1 => symbol1 = Symbol(1)
-              output = "Angreifer waehlt Schere aus"
+              output = "Angreifer waehlt Schere aus\n"
             case 2 => symbol1 = Symbol(2)
-              output = "Angreifer waehlt Stein aus"
+              output = "Angreifer waehlt Stein aus\n"
             case 3 => symbol1 = Symbol(3)
-              output = "Angreifer waehlt Schere aus"
+              output = "Angreifer waehlt Papier aus\n"
           }
 
       } else if (symbol1 != Symbol(0) && symbol2 == Symbol(0)) {
           symbol match {
             case 1 => symbol2 = Symbol(1)
-              output = "Defender waehlt Schere aus"
+              output = "Defender waehlt Schere aus\n"
             case 2 => symbol2 = Symbol(2)
-              output = "Defender waehlt Stein aus"
+              output = "Defender waehlt Stein aus\n"
             case 3 => symbol2 = Symbol(3)
-              output = "Defender waehlt Schere aus"
+              output = "Defender waehlt Schere aus\n"
           }
         }
     } else {
-        output = "Man muss sich im Kampf befinden, um kämpfen zu können"
+        output = "Man muss sich im Kampf befinden, um kämpfen zu können\n"
       }
     print(output)
   }

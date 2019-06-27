@@ -39,6 +39,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
       attackerCol = col
       highlight(row, col, currentPlayer.getCurrentPlayer)
     } else if (getSelectedCell(row, col).isHighlighted) {
+      print("Angreifer waehlt Feld ("+ row + "|" + col+") aus")
       fightCell(row, col)
       var s1 = Symbol(0)
       var s2 = Symbol(0)
@@ -140,8 +141,13 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
       set(attackerRow, attackerCol, Cell(0, isHighlighted = false, getSelectedCell(defenderRow, defenderCol).player))
     }
     notifyObservers
+    attackerRow = -1
+    attackerCol = - 1
+    defenderRow = -1
+    defenderCol = -1
+    symbol1 = Symbol(0)
+    symbol2 = Symbol(0)
     nextTurn()
-
   }
 
   def setSymbol(symbol: Int) : Unit = {

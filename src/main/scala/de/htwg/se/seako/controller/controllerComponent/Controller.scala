@@ -37,15 +37,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
       set(row, col, Cell(0, isHighlighted = false, currentPlayer.getCurrentPlayer))
       attackerRow = row
       attackerCol = col
-      /*
-      for (col <- 0 until field.size-1) {
-        for (row <- 0 until field.size-1) {
-          if(getSelectedCell(row,col).isHighlighted) {
-            set(row, col, Cell(getSelectedCell(row, col).value , isHighlighted = false, getSelectedCell(row, col).player))
 
-          }
-        }
-      }*/
       dehighlight()
       highlight(row, col, currentPlayer.getCurrentPlayer)
     } else if (getSelectedCell(row, col).isHighlighted) {
@@ -91,13 +83,12 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   }
 
   def dehighlight(): Unit = {
-
-    for (col <- 0 until field.size-1) {
-      for (row <- 0 until field.size-1) {
-        //if(getSelectedCell(row,col).isHighlighted) {
+    for (col <- 0 until field.size) {
+      for (row <- 0 until field.size) {
+        if(getSelectedCell(row,col).isHighlighted) {
           set(row, col, Cell(getSelectedCell(row, col).value , isHighlighted = false, getSelectedCell(row, col).player))
 
-        //}
+        }
       }
     }
   }
@@ -133,21 +124,6 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     defenderRow = row
     defenderCol = col
 
-    // Warte auf eingabe danach bestätigung
-    //
-
-      /*
-      for (row <- 0 until field.size-1) {
-        for (col <- 0 until field.size-1) {
-          if (getSelectedCell(row,col).value == 0) {
-            set(row, col,getSelectedCell(attackRow,attackCol))
-          }
-        }
-      }*/
-    /**
-
-    dehightlight
-      */
 
   }
 
@@ -170,17 +146,9 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     symbol2 = Symbol(0)
     dehighlight()
     nextTurn()
-    /*
-    for (col <- 0 until field.size-1) {
-      for (row <- 0 until field.size-1) {
-        if(getSelectedCell(row,col).isHighlighted) {
-          set(row, col, Cell(getSelectedCell(row, col).value , isHighlighted = false, getSelectedCell(row, col).player))
 
-        }
-      }
-    }*/
-    //dehighlight
   }
+
   def setSymbol(symbol: Int) : Unit = {
     var output = ""
       if (gameStatus == FIGHT ) {

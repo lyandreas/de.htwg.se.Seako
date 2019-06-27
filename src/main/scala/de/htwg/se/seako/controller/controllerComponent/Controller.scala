@@ -14,6 +14,12 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   private val undoManager = new UndoManager
 
 
+  var symbol1 = Symbol(0)
+  var symbol2 = Symbol(0)
+  var attackerRow  : Int = -1
+  var attackerCol : Int = -1
+  var defenderRow : Int = -1
+  var defenderCol : Int = -1
   def createEmptyField(size: Int): Unit = {
     field = new Field[Cell](size, Cell())
     notifyObservers
@@ -28,10 +34,15 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   def select(row: Int, col: Int): Unit = {
     gameStatus = SELECT
     if (currentPlayer.getCurrentPlayer.equals(getSelectedCell(row,col).player)) {
-      print("LLELFEQLF")
+      set(row, col, Cell(0, isHighlighted = false, currentPlayer.getCurrentPlayer))
+      attackerRow = row
+      attackerCol = col
       highlight(row, col, currentPlayer.getCurrentPlayer)
     } else if (getSelectedCell(row, col).isHighlighted) {
-      fight(row, col)
+      fightCell(row, col)
+      var s1 = Symbol(0)
+      var s2 = Symbol(0)
+
     } else if (!getSelectedCell(row, col).isHighlighted && getSelectedCell(row, col).player == currentPlayer.getCurrentPlayer) {
       highlight(row, col,currentPlayer.getCurrentPlayer)
     } else {
@@ -95,16 +106,79 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     currentPlayer.playerVector foreach println
   }
 
-  def fight(row:Int, col:Int): Unit = {
-
+  def fightCell(row:Int, col:Int): Unit = {
     gameStatus = FIGHT
+    defenderRow = row
+    defenderCol = col
 
-    var fightOutcome = new Fight(Cell())
-    print(fightOutcome)
-    if (fightOutcome.outcome()) {
-      set(row,col,Cell(1,isHighlighted = false,currentPlayer.getCurrentPlayer))
+    // Warte auf eingabe danach bestätigung
+    //
+
+      /*
+      for (row <- 0 until field.size-1) {
+        for (col <- 0 until field.size-1) {
+          if (getSelectedCell(row,col).value == 0) {
+            set(row, col,getSelectedCell(attackRow,attackCol))
+          }
+        }
+      }*/
+    /**
+
+    dehightlight
+      */
+
+  }
+
+  def startFight() : Unit = {
+
+    var fight = new Fight(symbol1, symbol2)
+    fight.outcome() //TRUE PLAYER ! gewonen
+
+    if (fight.outcome()) {
+      set(defenderRow, defenderCol, Cell(0, isHighlighted = false, currentPlayer.getCurrentPlayer))
+    } else if (getSelectedCell(defenderRow, defenderCol).player != Player("Computer", 0)) {
+      set(attackerRow, attackerCol, Cell(0, isHighlighted = false, getSelectedCell(defenderRow, defenderCol).player))
+    }
+    notifyObservers
+    nextTurn()
+
+  }
+
+  def setSymbol(symbol: Int) : Unit = {
+    var output = ""
+      if (gameStatus == FIGHT ) {
+        if (symbol1 == Symbol(0)) {
+          symbol match {
+            case 1 => symbol1 = Symbol(1)
+              output = "Angreifer waehlt Schere aus"
+            case 2 => symbol1 = Symbol(2)
+              output = "Angreifer waehlt Stein aus"
+            case 3 => symbol1 = Symbol(3)
+              output = "Angreifer waehlt Schere aus"
+          }
+
+      } else if (symbol1 != Symbol(0) && symbol2 == Symbol(0)) {
+          symbol match {
+            case 1 => symbol2 = Symbol(1)
+              output = "Defender waehlt Schere aus"
+            case 2 => symbol2 = Symbol(2)
+              output = "Defender waehlt Stein aus"
+            case 3 => symbol2 = Symbol(3)
+              output = "Defender waehlt Schere aus"
+          }
+        }
     } else {
-      notifyObservers
+        output = "Man muss sich im Kampf befinden, um kämpfen zu können"
+      }
+    print(output)
+  }
+
+
+  def checkWinnner(): Unit = {
+    for (col <- 0 until field.size-1) {
+      for (row <- 0 until field.size-1) {
+
+      }
     }
   }
 
@@ -117,6 +191,5 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     undoManager.redoStep()
     notifyObservers
   }
-
 
 }

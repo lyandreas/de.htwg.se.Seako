@@ -4,6 +4,7 @@ package de.htwg.se.seako.aview
 import de.htwg.se.seako.controller.controllerComponent.{Controller,GameStatus}
 import de.htwg.se.seako.model.{Cell, Player}
 import de.htwg.se.seako.util.Observer
+import de.htwg.se.seako.model.fight.Fight
 
 class Tui(controller: Controller) extends Observer {
   controller.add(this)
@@ -50,17 +51,18 @@ class Tui(controller: Controller) extends Observer {
         controller.nextTurn()
       case "cp" =>
         controller.currentPlayerVector()
+
+      case "1" => controller.setSymbol(1)
+
+      case "2" => controller.setSymbol(2)
+
+      case "3" => controller.setSymbol(3)
+
+      case "sf" => controller.startFight()
+
       case _ => input.toList.filter(c => c != ' ').filter(_.isDigit).map(c => c.toString.toInt) match {
           case row :: column :: Nil => controller.select(row,column)
-
-          /**if isHighlighted == false {
-            *  controller.select
-            *  } else {
-            *  controller.fight
-            *
-            */
-          //controller.fight(row,column,Cell(4,4))
-          //case row :: column :: value :: Nil => controller.set(row, column, Cell(value,value,"V"))
+          case row :: column :: value :: Nil => controller.set(row, column, Cell(value,isHighlighted = false,Player("Computer", 0)))
           case _ => println("unknown command")
       }
     }

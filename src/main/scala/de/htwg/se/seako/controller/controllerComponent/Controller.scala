@@ -92,8 +92,8 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
   def dehighlight(): Unit = {
 
-    for (col <- 0 until field.size-1) {
-      for (row <- 0 until field.size-1) {
+    for (col <- 0 until field.size) {
+      for (row <- 0 until field.size) {
         //if(getSelectedCell(row,col).isHighlighted) {
           set(row, col, Cell(getSelectedCell(row, col).value , isHighlighted = false, getSelectedCell(row, col).player))
 

@@ -27,24 +27,24 @@ class Tui(controller: Controller) extends Observer {
         size = 9
         controller.createEmptyField(size)
       case "p2" =>
-        controller.set(0,0,Cell(1,isHighlighted = false, Player("Player1",1)))
-        controller.set(size-1, size-1,Cell(1,isHighlighted = false, Player("Player2",1)))
+        controller.set(0,0,Cell(1,isHighlighted = false, Player("Player1")))
+        controller.set(size-1, size-1,Cell(1,isHighlighted = false, Player("Player2")))
         //controller.set(0,0,Cell(1,1,"W",false, Player("Player1",1)))
       case "p3" =>
-        controller.addPlayer(Player("Player3",3))
-        controller.set(0,0,Cell(1,isHighlighted = false, Player("Player1",1)))
-        controller.set(size-1,size-1,Cell(1,isHighlighted = false, Player("Player2",1)))
-        controller.set(0,size-1,Cell(1, isHighlighted = false, Player("Player3",1)))
+        controller.addPlayer(Player("Player3"))
+        controller.set(0,0,Cell(1,isHighlighted = false, Player("Player1")))
+        controller.set(size-1,size-1,Cell(1,isHighlighted = false, Player("Player2")))
+        controller.set(0,size-1,Cell(1, isHighlighted = false, Player("Player3")))
       case "p4" =>
-        if (!controller.currentPlayer.playerVector.contains(Player("Player3",1))) {
-          controller.addPlayer(Player("Player3",3))
+        if (!controller.currentPlayer.playerVector.contains(Player("Player3"))) {
+          controller.addPlayer(Player("Player3"))
         }
 
-        controller.addPlayer(Player("Player4",4))
-        controller.set(0,0,Cell(1,isHighlighted = false, Player("Player1",1)))
-        controller.set(size-1,size-1,Cell(1,isHighlighted = false, Player("Player2",1)))
-        controller.set(0,size-1,Cell(1,isHighlighted =  false, Player("Player3",1)))
-        controller.set(size-1, size-1, Cell(1,isHighlighted =  false, Player("Player4", 1)))
+        controller.addPlayer(Player("Player4"))
+        controller.set(0,0,Cell(1,isHighlighted = false, Player("Player1")))
+        controller.set(size-1,size-1,Cell(1,isHighlighted = false, Player("Player2")))
+        controller.set(0,size-1,Cell(1,isHighlighted =  false, Player("Player3")))
+        controller.set(size-1, size-1, Cell(1,isHighlighted =  false, Player("Player4")))
       case "c" =>
         controller.getCurrentPlayer
       case "np" =>
@@ -61,10 +61,10 @@ class Tui(controller: Controller) extends Observer {
       case "sf" => controller.startFight()
 
       case "dh" => controller.dehighlight()
-      case "r2" => controller.removePlayer(Player("Player2",2))
+      case "r2" => controller.removePlayer(Player("Player2"))
       case _ => input.toList.filter(c => c != ' ').filter(_.isDigit).map(c => c.toString.toInt) match {
           case row :: column :: Nil => controller.select(row,column)
-          case row :: column :: value :: Nil => controller.set(row, column, Cell(value,isHighlighted = false,Player("Computer", 0)))
+          case row :: column :: value :: Nil => controller.set(row, column, Cell(value,isHighlighted = false,Player("Computer")))
           case _ => println("unknown command")
       }
     }

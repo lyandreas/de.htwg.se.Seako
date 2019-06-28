@@ -3,7 +3,7 @@ package de.htwg.se.seako.model
 import de.htwg.se.seako.model
 
 class CurrentPlayer[T](vector: Vector[T]) {
-  var playerVector: Vector[Player] = Vector(Player("Player1", 1), Player("Player2", 2))
+  var playerVector: Vector[Player] = Vector(Player("Player1"), Player("Player2"))
 
   def add(player: Player) : Unit = playerVector = playerVector :+ player
 

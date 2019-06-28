@@ -3,7 +3,7 @@ package de.htwg.se.seako.model
 
 case class Cell(value: Int = 1,
                 isHighlighted: Boolean = false,
-                player : Player = Player("Computer",0)
+                player : Player = Player("Computer")
                ) {
   override def toString: String = {
     var output = ""

@@ -31,9 +31,9 @@ println("Das ist nur ein Test") // try to merge that!
 println("JDK-TEST")
 println("JDK-TEST Other direction")
 
-var playerVector: Vector[Player] = Vector(Player("Player1",1), Player("Player2",2))
+var playerVector: Vector[Player] = Vector(Player("Player1"), Player("Player2"))
 
-playerVector = playerVector :+ Player("Player3",3)
+playerVector = playerVector :+ Player("Player3")
 
 playerVector = playerVector.last +: playerVector
 playerVector = playerVector.dropRight(1)

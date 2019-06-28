@@ -138,7 +138,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     defenderRow = row
     defenderCol = col
 
-    if (getSelectedCell(defenderRow,defenderCol).player.equals(Player("Computer",0))) {
+    if (getSelectedCell(defenderRow,defenderCol).player.equals(Player("Computer"))) {
       var r = scala.util.Random
       symbol2 = Symbol(r.nextInt(3) + 1)
     }
@@ -152,7 +152,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
     if (fight.outcome()) {
       set(defenderRow, defenderCol, Cell(0, isHighlighted = false, currentPlayer.getCurrentPlayer))
-    } else if (getSelectedCell(defenderRow, defenderCol).player != Player("Computer", 0)) {
+    } else if (getSelectedCell(defenderRow, defenderCol).player != Player("Computer")) {
       set(attackerRow, attackerCol, Cell(0, isHighlighted = false, getSelectedCell(defenderRow, defenderCol).player))
     }
     notifyObservers
@@ -200,16 +200,16 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   def checkWinnner(): Unit = {
     for (col <- 0 until field.size) {
       for (row <- 0 until field.size) {
-        if (getSelectedCell(row, col).player == Player("Player1", 0)) {
+        if (getSelectedCell(row, col).player == Player("Player1")) {
           p1alive = true
         }
-        if (getSelectedCell(row, col).player == Player("Player2", 0)) {
+        if (getSelectedCell(row, col).player == Player("Player2")) {
           p2alive = true
         }
-        if (getSelectedCell(row, col).player == Player("Player3", 0)) {
+        if (getSelectedCell(row, col).player == Player("Player3")) {
           p3alive = true
         }
-        if (getSelectedCell(row, col).player == Player("Player4", 0)) {
+        if (getSelectedCell(row, col).player == Player("Player4")) {
           p4alive = true
         }
 

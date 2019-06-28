@@ -7,7 +7,7 @@ import de.htwg.se.seako.model.fight.Fight
 
 object Seako {
 
-  val controller = new Controller(new Field[Cell](6, Cell()), new CurrentPlayer[Player](Vector(Player("Player1",1), Player("Player2",2)) ))
+  val controller = new Controller(new Field[Cell](6, Cell()), new CurrentPlayer[Player](Vector(Player("Player1"), Player("Player2")) ))
   val tui = new Tui(controller)
   controller.notifyObservers
 

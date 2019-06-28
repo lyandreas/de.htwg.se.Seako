@@ -5,7 +5,7 @@ import de.htwg.se.seako.model.Symbol
 
 import scala.util.Random
 
-class Fight(symbol1: Symbol, symbol2: Symbol) extends FightStrategyTemplate {
+class Fight(symbol1: Symbol, symbol2: Symbol, againstCPU: Boolean) extends FightStrategyTemplate {
   var outcomeFight = false
 
   if (symbol1.symbol == 1 && symbol2.symbol == 3){
@@ -23,10 +23,12 @@ class Fight(symbol1: Symbol, symbol2: Symbol) extends FightStrategyTemplate {
   if (symbol1.symbol== 2 && symbol2.symbol == 3){
     outcomeFight= new LossStrategy().outcome()
   }
-  if (symbol1.symbol == symbol2.symbol && symbol1.symbol != 0 && symbol2.symbol != 0){
-    outcomeFight= new LossStrategy().outcome()
+  if (!againstCPU) {
+    if (symbol1.symbol == symbol2.symbol && symbol1.symbol != 0 && symbol2.symbol != 0){
+      outcomeFight= new LossStrategy().outcome()
+    }
   } else {
-    print("Warte auf eingabe")
+    outcomeFight = true
   }
   /*var r : Integer= Random.nextInt(100)
   var outcomeFight = false

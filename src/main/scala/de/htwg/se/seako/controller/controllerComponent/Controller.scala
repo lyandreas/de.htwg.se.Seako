@@ -147,7 +147,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
   def startFight() : Unit = {
 
-    var fight = new Fight(symbol1, symbol2)
+    var fight = new Fight(symbol1, symbol2, getSelectedCell(defenderRow,defenderCol).player.name.equals("Computer"))
     fight.outcome() //TRUE PLAYER ! gewonen
 
     if (fight.outcome()) {

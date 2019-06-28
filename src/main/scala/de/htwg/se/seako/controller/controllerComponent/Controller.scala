@@ -151,8 +151,37 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     fight.outcome() //TRUE PLAYER ! gewonen
 
     if (fight.outcome()) {
+      currentPlayer.getCurrentPlayer match {
+        case Player("Player1") => p1Points = p1Points + 1
+        case Player("Player2") => p2Points = p2Points + 1
+        case Player("Player3") => p3Points = p3Points + 1
+        case Player("Player4") => p4Points = p4Points + 1
+
+      }
+      getSelectedCell(defenderRow,defenderCol).player match {
+        case Player("Player1") => p1Points = p1Points - 1
+        case Player("Player2") => p2Points = p2Points - 1
+        case Player("Player3") => p3Points = p3Points - 1
+        case Player("Player4") => p4Points = p4Points - 1
+        case Player("Computer") =>
+      }
       set(defenderRow, defenderCol, Cell(0, isHighlighted = false, currentPlayer.getCurrentPlayer))
     } else if (getSelectedCell(defenderRow, defenderCol).player != Player("Computer")) {
+
+      getSelectedCell(defenderRow,defenderCol).player match {
+        case Player("Player1") => p1Points = p1Points + 1
+        case Player("Player2") => p2Points = p2Points + 1
+        case Player("Player3") => p3Points = p3Points + 1
+        case Player("Player4") => p4Points = p4Points + 1
+      }
+      currentPlayer.getCurrentPlayer match {
+        case Player("Player1") => p1Points = p1Points - 1
+        case Player("Player2") => p2Points = p2Points - 1
+        case Player("Player3") => p3Points = p3Points - 1
+        case Player("Player4") => p4Points = p4Points - 1
+
+      }
+
       set(attackerRow, attackerCol, Cell(0, isHighlighted = false, getSelectedCell(defenderRow, defenderCol).player))
     }
     notifyObservers

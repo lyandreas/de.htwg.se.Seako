@@ -29,12 +29,16 @@ class Tui(controller: Controller) extends Observer {
       case "p2" =>
         controller.set(0,0,Cell(1,isHighlighted = false, Player("Player1")))
         controller.set(size-1, size-1,Cell(1,isHighlighted = false, Player("Player2")))
-        //controller.set(0,0,Cell(1,1,"W",false, Player("Player1",1)))
+        controller.p1Points = 1
+        controller.p2Points = 1
       case "p3" =>
         controller.addPlayer(Player("Player3"))
         controller.set(0,0,Cell(1,isHighlighted = false, Player("Player1")))
         controller.set(size-1,size-1,Cell(1,isHighlighted = false, Player("Player2")))
         controller.set(0,size-1,Cell(1, isHighlighted = false, Player("Player3")))
+        controller.p1Points = 1
+        controller.p2Points = 1
+        controller.p3Points = 1
       case "p4" =>
         if (!controller.currentPlayer.playerVector.contains(Player("Player3"))) {
           controller.addPlayer(Player("Player3"))
@@ -45,6 +49,10 @@ class Tui(controller: Controller) extends Observer {
         controller.set(size-1,size-1,Cell(1,isHighlighted = false, Player("Player2")))
         controller.set(0,size-1,Cell(1,isHighlighted =  false, Player("Player3")))
         controller.set(size-1, size-1, Cell(1,isHighlighted =  false, Player("Player4")))
+        controller.p1Points = 1
+        controller.p2Points = 1
+        controller.p3Points = 1
+        controller.p4Points = 1
       case "c" =>
         controller.getCurrentPlayer
       case "np" =>

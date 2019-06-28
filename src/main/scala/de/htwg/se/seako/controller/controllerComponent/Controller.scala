@@ -168,7 +168,6 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     dehighlight()
     checkWinnner()
     nextTurn()
-
   }
 
   def setSymbol(symbol: Int) : Unit = {

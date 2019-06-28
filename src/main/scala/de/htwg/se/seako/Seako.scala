@@ -3,7 +3,6 @@ package de.htwg.se.seako
 import de.htwg.se.seako.aview.Tui
 import de.htwg.se.seako.model._
 import de.htwg.se.seako.controller.controllerComponent.Controller
-import de.htwg.se.seako.model.fight.Fight
 
 object Seako {
 

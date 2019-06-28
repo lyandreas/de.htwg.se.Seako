@@ -1,9 +1,6 @@
 package de.htwg.se.seako.model.fight
 
-import de.htwg.se.seako.model.Cell
 import de.htwg.se.seako.model.Symbol
-
-import scala.util.Random
 
 class Fight(symbol1: Symbol, symbol2: Symbol, againstCPU: Boolean) extends FightStrategyTemplate {
   var outcomeFight = false
@@ -30,14 +27,5 @@ class Fight(symbol1: Symbol, symbol2: Symbol, againstCPU: Boolean) extends Fight
   } else {
     outcomeFight = true
   }
-  /*var r : Integer= Random.nextInt(100)
-  var outcomeFight = false
-  if (r % 2 == 0) {
-    outcomeFight= new WinStrategy().outcome()
-    println(outcomeFight)
-  }  else {
-    outcomeFight = new LossStrategy().outcome()
-    println(outcomeFight)
-  }*/
   override def outcome(): Boolean = outcomeFight
 }

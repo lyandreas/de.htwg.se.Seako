@@ -4,7 +4,6 @@ package de.htwg.se.seako.aview
 import de.htwg.se.seako.controller.controllerComponent.{Controller,GameStatus}
 import de.htwg.se.seako.model.{Cell, Player}
 import de.htwg.se.seako.util.Observer
-import de.htwg.se.seako.model.fight.Fight
 
 class Tui(controller: Controller) extends Observer {
   controller.add(this)

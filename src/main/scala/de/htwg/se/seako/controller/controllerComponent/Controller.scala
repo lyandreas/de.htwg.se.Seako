@@ -4,9 +4,7 @@ import de.htwg.se.seako.model._
 import de.htwg.se.seako.util.{Observable, UndoManager}
 import de.htwg.se.seako.controller.controllerComponent.GameStatus._
 import de.htwg.se.seako.model.fight.Fight
-import de.htwg.se.seako.aview.Tui
 
-import scala.util.Random
 
 
 

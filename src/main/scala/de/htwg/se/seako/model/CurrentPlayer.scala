@@ -1,7 +1,5 @@
 package de.htwg.se.seako.model
 
-import de.htwg.se.seako.model
-
 class CurrentPlayer[T](vector: Vector[T]) {
   var playerVector: Vector[Player] = Vector(Player("Player1"), Player("Player2"))
 

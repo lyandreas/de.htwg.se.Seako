@@ -6,6 +6,8 @@ import de.htwg.se.seako.controller.controllerComponent.GameStatus._
 import de.htwg.se.seako.model.fight.Fight
 import de.htwg.se.seako.aview.Tui
 
+import scala.util.Random
+
 
 
 class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player]) extends Observable{
@@ -126,6 +128,10 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     currentPlayer.add(player)
   }
 
+  def removePlayer(player: Player) : Unit = {
+    currentPlayer.remove(player)
+  }
+
   def currentPlayerVector(): Unit = {
     currentPlayer.playerVector foreach println
   }
@@ -135,6 +141,10 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     defenderRow = row
     defenderCol = col
 
+    if (getSelectedCell(defenderRow,defenderCol).player.equals(Player("Computer",0))) {
+      var r = scala.util.Random
+      symbol2 = Symbol(r.nextInt(3) + 1)
+    }
 
   }
 

@@ -20,6 +20,16 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   var attackerCol : Int = -1
   var defenderRow : Int = -1
   var defenderCol : Int = -1
+
+
+  var player1 : Int = 0
+  var player2 : Int = 0
+
+  var p1alive = false
+  var p2alive = false
+  var p3alive = false
+  var p4alive = false
+
   def createEmptyField(size: Int): Unit = {
     field = new Field[Cell](size, Cell())
     notifyObservers
@@ -37,15 +47,6 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
       set(row, col, Cell(0, isHighlighted = false, currentPlayer.getCurrentPlayer))
       attackerRow = row
       attackerCol = col
-      /*
-      for (col <- 0 until field.size-1) {
-        for (row <- 0 until field.size-1) {
-          if(getSelectedCell(row,col).isHighlighted) {
-            set(row, col, Cell(getSelectedCell(row, col).value , isHighlighted = false, getSelectedCell(row, col).player))
-
-          }
-        }
-      }*/
       dehighlight()
       highlight(row, col, currentPlayer.getCurrentPlayer)
     } else if (getSelectedCell(row, col).isHighlighted) {
@@ -94,13 +95,14 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
 
     for (col <- 0 until field.size) {
       for (row <- 0 until field.size) {
-        //if(getSelectedCell(row,col).isHighlighted) {
+        if(getSelectedCell(row,col).isHighlighted) {
           set(row, col, Cell(getSelectedCell(row, col).value , isHighlighted = false, getSelectedCell(row, col).player))
 
-        //}
+        }
       }
     }
   }
+
   def set(row: Int, col: Int, cell: Cell): Unit = {
     gameStatus = SET
     undoManager.doStep(new SetCommand(row, col, cell, this))
@@ -133,21 +135,6 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     defenderRow = row
     defenderCol = col
 
-    // Warte auf eingabe danach bestätigung
-    //
-
-      /*
-      for (row <- 0 until field.size-1) {
-        for (col <- 0 until field.size-1) {
-          if (getSelectedCell(row,col).value == 0) {
-            set(row, col,getSelectedCell(attackRow,attackCol))
-          }
-        }
-      }*/
-    /**
-
-    dehightlight
-      */
 
   }
 
@@ -169,18 +156,11 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     symbol1 = Symbol(0)
     symbol2 = Symbol(0)
     dehighlight()
+    checkWinnner()
     nextTurn()
-    /*
-    for (col <- 0 until field.size-1) {
-      for (row <- 0 until field.size-1) {
-        if(getSelectedCell(row,col).isHighlighted) {
-          set(row, col, Cell(getSelectedCell(row, col).value , isHighlighted = false, getSelectedCell(row, col).player))
 
-        }
-      }
-    }*/
-    //dehighlight
   }
+
   def setSymbol(symbol: Int) : Unit = {
     var output = ""
       if (gameStatus == FIGHT ) {
@@ -210,11 +190,42 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     print(output)
   }
 
-
   def checkWinnner(): Unit = {
-    for (col <- 0 until field.size-1) {
-      for (row <- 0 until field.size-1) {
+    for (col <- 0 until field.size) {
+      for (row <- 0 until field.size) {
+        player1 = 0
+        player2 = 0
+        if (gameStatus == FIGHT) {
+          if (getSelectedCell(row,col).player == Player("Player1",0)){
+            player1 + 1
+            println("Anzahl Felder Spieler 1 = " + player1)
+          }
+          if (getSelectedCell(row,col).player == Player("Player1",0)){
+            player2 + 1
+            println("Anzahl Felder Spieler 1 = " + player2)
+          }
+          if (player1 != 0 && player2 == 0) {
+            println("Spieler 1 Gewinnt")
+            gameStatus = END
+          }
+          if (gameStatus == END) {
+            System.exit(0)
+          }
 
+          /*
+          if (getSelectedCell(row,col).player == Player("Player1",0)){
+            p1alive = true
+          }
+          if (getSelectedCell(row,col).player == Player("Player2",0)){
+            p2alive = true
+          }
+          if (getSelectedCell(row,col).player == Player("Player3",0)){
+            p3alive = true
+          }
+          if (getSelectedCell(row,col).player == Player("Player4",0)){
+            p4alive = true
+          }*/
+        }
       }
     }
   }

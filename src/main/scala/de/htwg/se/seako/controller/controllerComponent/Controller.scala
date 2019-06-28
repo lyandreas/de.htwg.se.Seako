@@ -24,10 +24,10 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   var defenderCol : Int = -1
 
 
-  var p1alive = false
-  var p2alive = false
-  var p3alive = false
-  var p4alive = false
+  var p1Points : Int = 0
+  var p2Points : Int = 0
+  var p3Points : Int = 0
+  var p4Points : Int = 0
 
   def createEmptyField(size: Int): Unit = {
     field = new Field[Cell](size, Cell())
@@ -198,47 +198,23 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   }
 
   def checkWinnner(): Unit = {
-    for (col <- 0 until field.size) {
-      for (row <- 0 until field.size) {
-        if (getSelectedCell(row, col).player == Player("Player1")) {
-          p1alive = true
-        }
-        if (getSelectedCell(row, col).player == Player("Player2")) {
-          p2alive = true
-        }
-        if (getSelectedCell(row, col).player == Player("Player3")) {
-          p3alive = true
-        }
-        if (getSelectedCell(row, col).player == Player("Player4")) {
-          p4alive = true
-        }
 
-      }
-    }
-    if (p1alive && !p2alive && !p3alive && !p4alive) {
+    if (p1Points > 0 && p2Points == 0 && p3Points == 0 && p4Points == 0) {
       print("Spieler 1 Gewinnt")
       gameStatus = END
     }
-    if (!p1alive && p2alive&& !p3alive && !p4alive) {
+    if (p1Points == 0 && p2Points > 0 && p3Points == 0 && p4Points == 0) {
       print("Spieler 2 Gewinnt")
       gameStatus = END
     }
-    if (!p1alive && !p2alive&& p3alive && !p4alive) {
+    if (p1Points == 0 && p2Points == 0 && p3Points > 0 && p4Points == 0) {
       print("Spieler 3 Gewinnt")
       gameStatus = END
     }
-    if (!p1alive && !p2alive&& !p3alive && p4alive) {
+    if (p1Points == 0 && p2Points == 0 && p3Points > 0 && p4Points == 0) {
       print("Spieler 4 Gewinnt")
       gameStatus = END
     }
-
-    if (gameStatus == END) {
-      print("Ende")
-    }
-    p1alive = false
-    p2alive = false
-    p3alive = false
-    p4alive = false
   }
 
   def undo(): Unit = {

@@ -24,9 +24,6 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   var defenderCol : Int = -1
 
 
-  var player1 : Int = 0
-  var player2 : Int = 0
-
   var p1alive = false
   var p2alive = false
   var p3alive = false
@@ -165,6 +162,7 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
     defenderCol = -1
     symbol1 = Symbol(0)
     symbol2 = Symbol(0)
+
     dehighlight()
     checkWinnner()
     nextTurn()
@@ -202,41 +200,45 @@ class Controller(var field: Field[Cell], val currentPlayer: CurrentPlayer[Player
   def checkWinnner(): Unit = {
     for (col <- 0 until field.size) {
       for (row <- 0 until field.size) {
-        player1 = 0
-        player2 = 0
-        if (gameStatus == FIGHT) {
-          if (getSelectedCell(row,col).player == Player("Player1",0)){
-            player1 + 1
-            println("Anzahl Felder Spieler 1 = " + player1)
-          }
-          if (getSelectedCell(row,col).player == Player("Player1",0)){
-            player2 + 1
-            println("Anzahl Felder Spieler 1 = " + player2)
-          }
-          if (player1 != 0 && player2 == 0) {
-            println("Spieler 1 Gewinnt")
-            gameStatus = END
-          }
-          if (gameStatus == END) {
-            System.exit(0)
-          }
-
-          /*
-          if (getSelectedCell(row,col).player == Player("Player1",0)){
-            p1alive = true
-          }
-          if (getSelectedCell(row,col).player == Player("Player2",0)){
-            p2alive = true
-          }
-          if (getSelectedCell(row,col).player == Player("Player3",0)){
-            p3alive = true
-          }
-          if (getSelectedCell(row,col).player == Player("Player4",0)){
-            p4alive = true
-          }*/
+        if (getSelectedCell(row, col).player == Player("Player1", 0)) {
+          p1alive = true
         }
+        if (getSelectedCell(row, col).player == Player("Player2", 0)) {
+          p2alive = true
+        }
+        if (getSelectedCell(row, col).player == Player("Player3", 0)) {
+          p3alive = true
+        }
+        if (getSelectedCell(row, col).player == Player("Player4", 0)) {
+          p4alive = true
+        }
+
       }
     }
+    if (p1alive && !p2alive && !p3alive && !p4alive) {
+      print("Spieler 1 Gewinnt")
+      gameStatus = END
+    }
+    if (!p1alive && p2alive&& !p3alive && !p4alive) {
+      print("Spieler 2 Gewinnt")
+      gameStatus = END
+    }
+    if (!p1alive && !p2alive&& p3alive && !p4alive) {
+      print("Spieler 3 Gewinnt")
+      gameStatus = END
+    }
+    if (!p1alive && !p2alive&& !p3alive && p4alive) {
+      print("Spieler 4 Gewinnt")
+      gameStatus = END
+    }
+
+    if (gameStatus == END) {
+      print("Ende")
+    }
+    p1alive = false
+    p2alive = false
+    p3alive = false
+    p4alive = false
   }
 
   def undo(): Unit = {

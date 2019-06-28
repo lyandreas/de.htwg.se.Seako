@@ -25,7 +25,9 @@ class Fight(symbol1: Symbol, symbol2: Symbol, againstCPU: Boolean) extends Fight
       outcomeFight= new LossStrategy().outcome()
     }
   } else {
-    outcomeFight = true
+    if (symbol1.symbol == symbol2.symbol && symbol1.symbol != 0 && symbol2.symbol != 0){
+      outcomeFight = true
+    }
   }
   override def outcome(): Boolean = outcomeFight
 }
